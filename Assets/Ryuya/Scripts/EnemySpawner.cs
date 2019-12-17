@@ -10,6 +10,9 @@ public class EnemySpawner : MonoBehaviour
 	[SerializeField] GameObject player;
 	[SerializeField] RectTransform rect;
 
+	[SerializeField] GameObject canvas;
+	[SerializeField] GameObject[] enemyIcon;
+
 	//待機時間などはフレームで管理しています。
 
 	//基本となる待機時間の変数。そのうちこちらもタイミング変更で変えていきます。
@@ -37,11 +40,7 @@ public class EnemySpawner : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		//時間、スポーンする敵、スポーンするサイドを変える
-		randomTime = Random.Range( 0f, 3f );
-		waitTime += randomTime;
-		enemyNumber = Random.Range( 1, 4 );
-		spawnSide = Random.Range( -1, 2 );
+		EnemyInit();
 	}
 
 	// Update is called once per frame
@@ -58,15 +57,25 @@ public class EnemySpawner : MonoBehaviour
 			Debug.Log( spawnSide );
 			float spawnY = playerPos.position.y;
 			float spawnZ = playerPos.position.z - ( playerPos.forward.z * 10 ) + ( playerPos.right.z * spawnSide );
-			Instantiate( enemy[ enemyNumber ], new Vector3( spawnX, spawnY, spawnZ ), player.transform.rotation );
+			GameObject instantiateEnemy = Instantiate( enemy[ enemyNumber ], new Vector3( spawnX, spawnY, spawnZ ), player.transform.rotation );
 
-			//時間、スポーンする敵、スポーンするサイドを変える
-			waitTime = waitState;
-			randomTime = Random.Range( 0f, 3f );
-			waitTime += randomTime;
-			enemyNumber = Random.Range( 1, 4 );
-			spawnSide = Random.Range( -1, 2 );
+			GameObject prefab = ( GameObject )Instantiate( enemyIcon[ enemyNumber ] );
+			prefab.transform.SetParent( canvas.transform, false );
+			IconController objectPass = prefab.GetComponent<IconController>();
+			Debug.Log( objectPass );
+			objectPass.GetEnemyObject( instantiateEnemy, spawnSide );
 
+			EnemyInit();
 		}
+	}
+
+	//時間、スポーンする敵、スポーンするサイドを変える初期処理のようなもの
+	void EnemyInit()
+	{
+		waitTime = waitState;
+		randomTime = Random.Range( 0f, 3f );
+		waitTime += randomTime;
+		enemyNumber = Random.Range( 1, 4 );
+		spawnSide = Random.Range( -1, 2 );
 	}
 }
