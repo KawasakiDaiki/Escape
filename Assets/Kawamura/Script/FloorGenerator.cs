@@ -18,9 +18,10 @@ public class FloorGenerator : MonoBehaviour
     [SerializeField]
         string _objpool;//オブジェクトプール化するオブジェクト名
     [SerializeField]
-        float _pop_start;
-
-    private float _start_z = 0;//床プレハブ1つの長さ
+        float _pop_start =0;
+    [SerializeField]
+    private float _Floor_z;
+    private float _Start_z = 0;//床プレハブ1つの長さ
     private GameObject[] tagObjects;//tag_nameの名前をもつタグのオブジェクトを入れる配列
     private ObjectPool _pool;
     
@@ -38,12 +39,13 @@ public class FloorGenerator : MonoBehaviour
         if (_time > _pop_start&& Time.timeScale!=0)
         {
             tagObjects = GameObject.FindGameObjectsWithTag(_tag_name);
-            if (tagObjects.Length < _pool.maxcount)//最大数まで生成
+            if (tagObjects.Length < _pool.maxcount)
             {
                 var objects = _pool.GetObject();
+
                 //床の継ぎ足し
-                objects.transform.position = new Vector3(0, 0, _start_z);
-                _start_z += _start_z;
+                objects.transform.position = new Vector3(0, (float)-1.5, _Start_z);
+                _Start_z += _Floor_z;
             }
         }
     }

@@ -17,6 +17,7 @@ public class ObjectsGenerater : MonoBehaviour
     private ObjectPool _pool;
     private int start_x,start_y;//生成座標代入
     private float time;
+    private int GenerateRangeRestriction;//rランダム生成範囲の絶対値
     private Transform _tf;
 
    private void Start()
@@ -35,8 +36,8 @@ public class ObjectsGenerater : MonoBehaviour
             {
                 var objects = _pool.GetObject();
                 //ランダムに再配置
-                start_x = (int)Random.Range(-GenbereteRangeRestriction, GenbereteRangeRestriction);
-                start_y = (int)Random.Range(-GenbereteRangeRestriction, GenbereteRangeRestriction);
+                start_x = (int)Random.Range(-GenerateRangeRestriction, GenerateRangeRestriction);
+                start_y = (int)Random.Range(-GenerateRangeRestriction, GenerateRangeRestriction);
                 objects.transform.position = new Vector3(start_x, start_y, 0);
             }
         }
