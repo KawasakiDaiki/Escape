@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemType : MonoBehaviour
 {
-    public CreateItem.Types type { get; set; }
+    public ItemManeger.Types type { get; set; }
 
     
     // Start is called before the first frame update

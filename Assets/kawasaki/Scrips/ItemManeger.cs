@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreateItem : MonoBehaviour
+public class ItemManeger : MonoBehaviour
 {
+    //アイテムの種類
     public enum Types
     {
         bean,
@@ -13,6 +14,7 @@ public class CreateItem : MonoBehaviour
 
         TypeNum,
     }
+    //デバッグ用に色変更
     Color[] colors =
     {
         Color.red,
@@ -33,10 +35,15 @@ public class CreateItem : MonoBehaviour
     {
     }
 
+
+
+    //ボタン入力されたらアイテムをインスタンス、ボタンごとにタイプ分け
     public void OnClick(int type)
     {
-        GameObject item = Instantiate(itemPrefav, player.transform.position-player.transform.up*0.5f, Quaternion.identity);
-        item.GetComponent<MeshRenderer>().material.color = colors[type];
+        //プレイヤーの足元に生成
+        Vector3 footPos = player.transform.position - player.transform.up * 0.5f;
+        GameObject item = Instantiate(itemPrefav, footPos, Quaternion.identity);
         item.GetComponent<ItemType>().type = (Types)type;
+        item.GetComponent<MeshRenderer>().material.color = colors[type];
     }
 }
