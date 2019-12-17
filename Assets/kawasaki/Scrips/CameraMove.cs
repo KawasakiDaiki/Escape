@@ -1,21 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    public Transform Traget;
-    public Transform LookTarget;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField, Tooltip("追従するターゲット")]
+    Transform Traget;
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
     void FixedUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, Traget.position, 0.5f);
