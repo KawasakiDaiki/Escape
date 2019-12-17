@@ -58,19 +58,18 @@ public class FlickInput : MonoBehaviour
         {
             flickState = FlickDirection.None;
         }
-
-        if (GetFlick(FlickDirection.Left))
-        {
-            Debug.Log("Left");
-        }
-        if (GetFlick(FlickDirection.Right))
-        {
-            Debug.Log("Right");
-        }
     }
 
     /// <summary>
-    /// フリックされた瞬間を検知する
+    /// <para>フリックされた瞬間を検知する</para>
+    /// <example>例)左にフリック:
+    /// <code>
+    /// if (GetFlick(FlickDirection.Left))
+    /// {
+    ///     // Do anything.
+    /// }
+    /// </code>
+    /// </example>
     /// </summary>
     /// <param name="direction">フリックの方向</param>
     public bool GetFlick(FlickDirection direction)
