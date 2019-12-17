@@ -1,0 +1,72 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class EnemySpawner : MonoBehaviour
+{
+
+	[SerializeField] GameObject[] enemy;
+	[SerializeField] GameObject player;
+	[SerializeField] RectTransform rect;
+
+	//待機時間などはフレームで管理しています。
+
+	//基本となる待機時間の変数。そのうちこちらもタイミング変更で変えていきます。
+	private float waitState = 3.0f;
+	//実際に使用する(減算する)変数
+	private float waitTime = 3.0f;
+	//ランダムな時間を代入する変数
+	private float randomTime = 0f;      
+
+
+	//ランダムで敵の種類を決める変数
+	private int enemyNumber = 0;
+	//スポーンする位置を変える変数
+	private int spawnSide = 0;
+
+	//UIのサイズ定数
+	const float uiSizeX = 100;
+	const float uiSizeY = 100;
+	//UIのサイズを変える変数
+	private float uiSizeMove = 0;
+
+
+
+
+	// Start is called before the first frame update
+	void Start()
+	{
+		//時間、スポーンする敵、スポーンするサイドを変える
+		randomTime = Random.Range( 0f, 3f );
+		waitTime += randomTime;
+		enemyNumber = Random.Range( 1, 4 );
+		spawnSide = Random.Range( -1, 2 );
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+		uiSizeMove += 0.1f;
+		rect.sizeDelta = new Vector2( uiSizeX + uiSizeMove, uiSizeY + uiSizeMove );
+		waitTime -= 0.01f;
+		//Debug.Log( WaitTime );
+		if( waitTime <= -0.0f )
+		{
+			Transform playerPos = player.GetComponent<Transform>();
+			float spawnX = playerPos.position.x - ( playerPos.forward.x * 10 ) + ( playerPos.right.x * spawnSide );
+			Debug.Log( spawnSide );
+			float spawnY = playerPos.position.y;
+			float spawnZ = playerPos.position.z - ( playerPos.forward.z * 10 ) + ( playerPos.right.z * spawnSide );
+			Instantiate( enemy[ enemyNumber ], new Vector3( spawnX, spawnY, spawnZ ), player.transform.rotation );
+
+			//時間、スポーンする敵、スポーンするサイドを変える
+			waitTime = waitState;
+			randomTime = Random.Range( 0f, 3f );
+			waitTime += randomTime;
+			enemyNumber = Random.Range( 1, 4 );
+			spawnSide = Random.Range( -1, 2 );
+
+		}
+	}
+}
