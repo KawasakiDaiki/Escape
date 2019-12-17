@@ -15,17 +15,20 @@ public enum FlickDirection
 /// </summary>
 public class FlickInput : MonoBehaviour
 {
-    [SerializeField, Tooltip("フリック判定する最低の速さ")] float minSpeed;
-    [SerializeField, Tooltip("左右の判定を取る角度"), Range(0, 180.0f)] float detectionAngle;
+    [SerializeField, Tooltip("フリック判定する最低の速さ")]
+    private float minSpeed = 20;
+    [SerializeField, Tooltip("左右の検出可能な角度"), Range(0, 180.0f)]
+    private float detectionAngle = 90;
 
-    Vector3 previousPosition;
+    private Vector3 previousPosition;
 
-    FlickDirection flickState;
-    FlickDirection previousFlickState;
+    // 現フレーム、前フレームの状態
+    private FlickDirection flickState;
+    private FlickDirection previousFlickState;
 
+    // 定数
     static readonly float RightAngle = 90.0f;
     static readonly float LeftAngle = -90.0f;
-
 
     void Update()
     {
@@ -80,6 +83,7 @@ public class FlickInput : MonoBehaviour
 #if UNITY_EDITOR
     void OnDrawGizmosSelected()
     {
+        // 検出角度のギズモ表示
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(Mathf.Sin((RightAngle - detectionAngle / 2) * Mathf.Deg2Rad), Mathf.Cos((RightAngle - detectionAngle / 2) * Mathf.Deg2Rad)));
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(Mathf.Sin((RightAngle + detectionAngle / 2) * Mathf.Deg2Rad), Mathf.Cos((RightAngle + detectionAngle / 2) * Mathf.Deg2Rad)));
