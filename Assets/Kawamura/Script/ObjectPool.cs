@@ -7,8 +7,8 @@ public class ObjectPool : MonoBehaviour
     [SerializeField]
     GameObject _poolObj; // プールするオブジェクト。
     [SerializeField]
-    internal int maxcount; // 最初に生成するオブジェクトの数。敵、星に関しては湧き数制限となる
-    private List<GameObject> _poolObjList; // 生成した弾用のリスト。このリストの中から未使用のものを探したりする 
+    internal int maxcount; // 最初に生成するオブジェクトの湧き数制限となる
+    private List<GameObject> _poolObjList; // 生成したオブジェクトのリスト。このリストの中から未使用のものを探したりする 
 
     void Awake()
     {
@@ -21,13 +21,13 @@ public class ObjectPool : MonoBehaviour
         _poolObjList = new List<GameObject>();
         for (int i = 0; i < maxcount; i++)
         {
-            var newObj = CreateNewObject(); // 弾を生成して
+            var newObj = CreateNewObject(); // オブジェクトを生成して
             newObj.SetActive(false); // 物理演算を切って(=未使用にして)
             _poolObjList.Add(newObj); // リストに保存しておく
         }
     }
 
-    // 未使用の弾を探して返す処理
+    // 未使用のオブジェクトを探して返す処理
     // 未使用のものがなければ新しく作って返す
     public GameObject GetObject()
     {
@@ -47,11 +47,11 @@ public class ObjectPool : MonoBehaviour
          return newObj;
      }
 
-     // 新しく弾を作成する処理
+     // 新しくオブジェクトを作成する処理
      private GameObject CreateNewObject()
      {
          var pos = new Vector2(100, 100); // 画面外であればどこでもOK
-         var newObj = Instantiate(_poolObj, pos, Quaternion.identity); // 弾を生成しておいて
+         var newObj = Instantiate(_poolObj, pos, Quaternion.identity); // オブジェクトを生成しておいて
          newObj.name = _poolObj.name + (_poolObjList.Count + 1); // 名前を連番でつけてから
          return newObj; // 返す
      }
