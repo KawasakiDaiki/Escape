@@ -21,16 +21,21 @@ public class IconController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (enemyobject)
+        {
+            Vector3 pPos = playerPos.GetComponent<Transform>().position;
+            Vector3 ePos = enemyobject.GetComponent<Transform>().position;
+            float distance = Vector3.SqrMagnitude(pPos - ePos);
 
-		Vector3 pPos = playerPos.GetComponent<Transform>().position;
-		Vector3 ePos = enemyobject.GetComponent<Transform>().position;
-		float distance = Vector3.SqrMagnitude( pPos - ePos );
+            float size = 50.0f + (100.0f - distance);
 
-		float size = 50.0f + ( 100.0f - distance );
-
-		GetComponent<RectTransform>().sizeDelta = new Vector2( size, size );
-
-		//Debug.Log( distance );
+            GetComponent<RectTransform>().sizeDelta = new Vector2(size, size);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        //Debug.Log( distance );
 
     }
 

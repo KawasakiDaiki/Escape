@@ -45,6 +45,7 @@ public class PlayerMove : MonoBehaviour
 
         distance += _rg.velocity.magnitude;
         RecodeText.text = "走距離:" + ((int)(distance * Time.fixedDeltaTime)).ToString();
+        WaveManeger.PlayerDistance = distance;
     }
 
 

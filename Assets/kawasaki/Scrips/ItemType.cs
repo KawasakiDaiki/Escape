@@ -31,7 +31,8 @@ public class ItemType : MonoBehaviour
     {
         if (col.gameObject.tag == "Enemy")
         {
-            Destroy(col);
+            Debug.Log("hit");
+            Destroy(col.gameObject);
             LifeCoroutine = null;
             gameObject.SetActive(false);
         }
