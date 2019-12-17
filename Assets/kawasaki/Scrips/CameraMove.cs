@@ -17,5 +17,6 @@ public class CameraMove : MonoBehaviour
         Vector3 vec = transform.position;
         vec.z = player.transform.position.z-10f;
         transform.position = vec;
+        
     }
 }
