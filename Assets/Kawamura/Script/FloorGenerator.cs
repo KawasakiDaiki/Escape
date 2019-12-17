@@ -39,7 +39,7 @@ public class FloorGenerator : MonoBehaviour
         if (_time > _pop_start&& Time.timeScale!=0)
         {
             tagObjects = GameObject.FindGameObjectsWithTag(_tag_name);
-            if (tagObjects.Length < _pool.maxcount)
+            if (tagObjects.Length < _pool._maxcount)
             {
                 var objects = _pool.GetObject();
 

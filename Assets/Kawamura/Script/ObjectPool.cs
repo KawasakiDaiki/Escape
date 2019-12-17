@@ -7,7 +7,7 @@ public class ObjectPool : MonoBehaviour
     [SerializeField]
     GameObject _poolObj; // プールするオブジェクト。
     [SerializeField]
-    internal int maxcount; // 最初に生成するオブジェクトの湧き数制限となる
+    internal int _maxcount; // 最初に生成するオブジェクトの湧き数制限となる
     private List<GameObject> _poolObjList; // 生成したオブジェクトのリスト。このリストの中から未使用のものを探したりする 
 
     void Awake()
@@ -19,7 +19,7 @@ public class ObjectPool : MonoBehaviour
     private void CreatePool()
     {
         _poolObjList = new List<GameObject>();
-        for (int i = 0; i < maxcount; i++)
+        for (int i = 0; i < _maxcount; i++)
         {
             var newObj = CreateNewObject(); // オブジェクトを生成して
             newObj.SetActive(false); // 物理演算を切って(=未使用にして)
@@ -57,6 +57,6 @@ public class ObjectPool : MonoBehaviour
      }
      public int GenerateRestriction()
      {
-         return maxcount;
+         return _maxcount;
      }
 }
