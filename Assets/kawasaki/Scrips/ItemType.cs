@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMove : MonoBehaviour
+public class ItemType : MonoBehaviour
 {
-    public GameObject player;
+    public CreateItem.Types type { get; set; }
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -14,8 +16,6 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 vec = transform.position;
-        vec.z = player.transform.position.z-5.0f;
-        transform.position = vec;
+        
     }
 }
