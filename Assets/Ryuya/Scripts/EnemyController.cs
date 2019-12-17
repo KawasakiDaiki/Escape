@@ -1,43 +1,41 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-	public ItemManeger.Types type
-	{
-		get; set;
-	}
+    public ItemManeger.Types type
+    {
+        get; set;
+    }
 
 
-	[SerializeField]float speed = 1.0f;
-	Rigidbody _rg;
-	bool deathFlg = false;
+    [SerializeField] float speed = 1.0f;
+    Rigidbody _rg;
+    bool deathFlg = false;
 
     // Start is called before the first frame update
     void Start()
     {
-		_rg = GetComponent<Rigidbody>();
+        _rg = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-		//if( _rg.velocity.magnitude < 6 )
-		//{
-		//	_rg.AddForce( transform.forward * speed );
-		//}
-		//else
-		{
-			_rg.velocity = transform.forward * 6;
-		}
-	}
+        //if( _rg.velocity.magnitude < 6 )
+        //{
+        //  _rg.AddForce( transform.forward * speed );
+        //}
+        //else
+        {
+            _rg.velocity = transform.forward * 15;
+        }
+    }
 
-	void OnTriggerStay( Collider other )
-	{
-		if( other.gameObject.tag == "Player" )
-		{
-			deathFlg = true;
-		}
-	}
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            deathFlg = true;
+        }
+    }
 }

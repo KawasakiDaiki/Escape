@@ -1,21 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class IconController : MonoBehaviour
 {
 
-	GameObject enemyobject;
-	GameObject playerPos;
-	int side = 0;
+    GameObject enemyobject;
+    GameObject playerPos;
+    int side = 0;
 
     void Start()
     {
-		Debug.Log( enemyobject.name );
+        Debug.Log(enemyobject.name);
 
-		RectTransform pos = GetComponent<RectTransform>();
-		pos.anchoredPosition = new Vector2( 120 * side, 180 );
-		playerPos = GameObject.FindGameObjectWithTag( "Player" );
+        RectTransform pos = GetComponent<RectTransform>();
+        pos.anchoredPosition = new Vector2(500 * side, 500);
+        playerPos = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -25,9 +23,9 @@ public class IconController : MonoBehaviour
         {
             Vector3 pPos = playerPos.GetComponent<Transform>().position;
             Vector3 ePos = enemyobject.GetComponent<Transform>().position;
-            float distance = Vector3.SqrMagnitude(pPos - ePos);
+            float distance = Vector3.Distance(pPos, ePos);
 
-            float size = 50.0f + (100.0f - distance);
+            float size = 50.0f + 200.0f * (1 - distance / 50.0f);
 
             GetComponent<RectTransform>().sizeDelta = new Vector2(size, size);
         }
@@ -39,9 +37,9 @@ public class IconController : MonoBehaviour
 
     }
 
-	public void GetEnemyObject( GameObject enemy, int spawnSide )
-	{
-		enemyobject = enemy;
-		side = spawnSide;
-	}
+    public void GetEnemyObject(GameObject enemy, int spawnSide)
+    {
+        enemyobject = enemy;
+        side = spawnSide;
+    }
 }
