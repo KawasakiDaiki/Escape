@@ -44,7 +44,7 @@ public class FloorGenerator : MonoBehaviour
                 var objects = _pool.GetObject();
 
                 //床の継ぎ足し
-                objects.transform.position = new Vector3(0, (float)-1.5, _Start_z);
+                objects.transform.position = new Vector3(0, 0, _Start_z);
                 _Start_z += _Floor_z;
             }
         }

@@ -24,7 +24,7 @@ public class PlayerMove1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_rg.velocity.magnitude < MaxSpeed)
+        if (_rg.velocity.magnitude < MaxSpeed )
         {
             _rg.AddForce(transform.forward * speed);
         }

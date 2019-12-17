@@ -165,14 +165,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3784073622889998449}
     m_Modifications:
-    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
-      propertyPath: m_Name
-      value: RoadTemplate1 (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
-      propertyPath: m_TagString
-      value: Ground
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -228,6 +220,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
+      propertyPath: m_Name
+      value: RoadTemplate1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
@@ -244,14 +244,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3784073622889998449}
     m_Modifications:
-    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
-      propertyPath: m_Name
-      value: RoadTemplate1 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
-      propertyPath: m_TagString
-      value: Ground
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -307,6 +299,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
+      propertyPath: m_Name
+      value: RoadTemplate1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
@@ -323,14 +323,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3784073622889998449}
     m_Modifications:
-    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
-      propertyPath: m_Name
-      value: RoadTemplate1 (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
-      propertyPath: m_TagString
-      value: Ground
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -387,6 +379,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
+      propertyPath: m_Name
+      value: RoadTemplate1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
 --- !u!4 &6642124732347744280 stripped
@@ -402,14 +402,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3784073622889998449}
     m_Modifications:
-    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
-      propertyPath: m_Name
-      value: RoadTemplate1 (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
-      propertyPath: m_TagString
-      value: Ground
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -466,6 +458,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
+      propertyPath: m_Name
+      value: RoadTemplate1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
 --- !u!4 &8667176077895712661 stripped
@@ -481,14 +481,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3784073622889998449}
     m_Modifications:
-    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
-      propertyPath: m_Name
-      value: RoadTemplate1 (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
-      propertyPath: m_TagString
-      value: Ground
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -544,6 +536,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
+      propertyPath: m_Name
+      value: RoadTemplate1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81ed8b8f717fe3f47927937d242daf90, type: 3}
