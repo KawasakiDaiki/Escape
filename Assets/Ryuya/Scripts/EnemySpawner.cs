@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
 	//待機時間などはフレームで管理しています。
 
 	//基本となる待機時間の変数。そのうちこちらもタイミング変更で変えていきます。
-	private float waitState = 3.0f;
+	private float waitState = 1.0f;
 	//実際に使用する(減算する)変数
 	private float waitTime = 3.0f;
 	//ランダムな時間を代入する変数
@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
 		{
 			Transform playerPos = player.GetComponent<Transform>();
 			float spawnX = playerPos.position.x - ( playerPos.forward.x * 10 ) + ( playerPos.right.x * spawnSide );
-			Debug.Log( spawnSide );
+			//Debug.Log( spawnSide );
 			float spawnY = playerPos.position.y;
 			float spawnZ = playerPos.position.z - ( playerPos.forward.z * 10 ) + ( playerPos.right.z * spawnSide );
 			GameObject instantiateEnemy = Instantiate( enemy[ enemyNumber ], new Vector3( spawnX, spawnY, spawnZ ), player.transform.rotation );
@@ -62,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
 			GameObject eIcon = ( GameObject )Instantiate( enemyIcon[ enemyNumber ] );
 			eIcon.transform.SetParent( canvas.transform, false );
 			IconController objectPass = eIcon.GetComponent<IconController>();
-			Debug.Log( objectPass );
+			//Debug.Log( objectPass );
 			objectPass.GetEnemyObject( instantiateEnemy, spawnSide );
 
 			EnemyInit();
