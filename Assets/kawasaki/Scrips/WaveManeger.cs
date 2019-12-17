@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class WaveManeger : MonoBehaviour
 {
-    public static float PlayerDistance { get; set; }
+    public static float PlayerDistance;
+    public int waveCount = 1;
     // Start is called before the first frame update
     void Start()
     {

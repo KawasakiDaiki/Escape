@@ -56,14 +56,23 @@ public class ItemManeger : MonoBehaviour
 
             if (!ItemPool[i].activeSelf)
             {
-                player.GetComponent<PlayerWideMove>().ItemCreator(type, ItemPool[i]);
+                ItemCreator(type, ItemPool[i]);
                 return;
             }
         }
         ItemPool.Add(Instantiate(itemPrefav));
         poolCount = ItemPool.Count;
         ItemPool[poolCount-1].transform.SetParent(transform);
-        player.GetComponent<PlayerWideMove>().ItemCreator(type, ItemPool[poolCount - 1]);
+        ItemCreator(type, ItemPool[poolCount - 1]);
+    }
 
+    public void ItemCreator(int type, GameObject obj)
+    {
+        //プレイヤーの足元に生成
+        Vector3 footPos =player.transform.position /*- transform.up * 0.5f*/;
+        obj.transform.position = footPos;
+        obj.SetActive(true);
+        obj.GetComponent<ItemType>().type = (Types)type;
+        obj.GetComponent<MeshRenderer>().material.color = colors[type];
     }
 }

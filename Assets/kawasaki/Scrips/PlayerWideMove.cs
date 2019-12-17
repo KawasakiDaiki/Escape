@@ -35,13 +35,4 @@ public class PlayerWideMove : MonoBehaviour
             NowLine++;
         }
     }
-    public void ItemCreator(int type,GameObject obj)
-    {
-        //プレイヤーの足元に生成
-        Vector3 footPos = transform.position /*- transform.up * 0.5f*/;
-        obj.transform.position = footPos;
-        obj.SetActive(true);
-        obj.GetComponent<ItemType>().type = (ItemManeger.Types)type;
-        obj.GetComponent<MeshRenderer>().material.color = ItemManeger.colors[type];
-    }
 }

@@ -43,8 +43,8 @@ public class PlayerMove : MonoBehaviour
             _rg.velocity = transform.forward * maxSpeed;
         }
 
-        distance += _rg.velocity.magnitude;
-        RecodeText.text = "走距離:" + ((int)(distance * Time.fixedDeltaTime)).ToString();
+        distance += _rg.velocity.magnitude* Time.fixedDeltaTime;
+        RecodeText.text = "走距離:" + ((int)distance).ToString();
         WaveManeger.PlayerDistance = distance;
     }
 

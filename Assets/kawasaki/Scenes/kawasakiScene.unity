@@ -6081,7 +6081,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495598331}
   m_LocalRotation: {x: 0.2206974, y: 0, z: 0, w: 0.9753424}
-  m_LocalPosition: {x: 0, y: 4.5, z: -10}
+  m_LocalPosition: {x: 0, y: 4.5, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1832197714}
@@ -6163,8 +6163,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1647034606}
-  m_LocalRotation: {x: 0.2206974, y: 0, z: 0, w: 0.9753424}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.2206974, y: 8.927307e-18, z: -2.0200429e-18, w: 0.9753424}
+  m_LocalPosition: {x: -1.6475397e-16, y: 5.000005, z: -16.93}
   m_LocalScale: {x: 1, y: 1.076517, z: 1.076517}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6182,7 +6182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3397ef14e0a9d44904189a4c0b8bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetPosition: {fileID: 1495598332}
+  Traget: {fileID: 1495598332}
   LookTarget: {fileID: 1832197714}
 --- !u!1 &1832197713
 GameObject:
