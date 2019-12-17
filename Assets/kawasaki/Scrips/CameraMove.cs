@@ -15,7 +15,7 @@ public class CameraMove : MonoBehaviour
     void Update()
     {
         Vector3 vec = transform.position;
-        vec.z = player.transform.position.z-10f;
+        vec.z = player.transform.position.z-5.0f;
         transform.position = vec;
     }
 }
