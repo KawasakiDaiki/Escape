@@ -1,6 +1,7 @@
 ﻿/*
  2019/12/16
  作成：川崎大樹
+ プレイヤー前方向への移動
  */
 
 
@@ -18,7 +19,7 @@ public class PlayerMove : MonoBehaviour
     private float maxSpeed=5;
     private float distance = 0;
 
-    private int NowLine = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        WideMovar();
+        //PlayerTurn();
     }
     void FixedUpdate()
     {
@@ -43,25 +44,21 @@ public class PlayerMove : MonoBehaviour
         }
 
         distance += _rg.velocity.magnitude;
-        RecodeText.text = "走距離:" + ((int)distance / 100).ToString();
+        RecodeText.text = "走距離:" + ((int)distance / Time.fixedDeltaTime).ToString();
     }
-    void WideMovar()
+
+
+    void PlayerTurn()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (NowLine > -1)
-            {
-                transform.position -= transform.right;
-                NowLine--;
-            }
+            transform.RotateAround(transform.GetChild(0).transform.position, transform.up, -90);
+            _rg.velocity = transform.forward * _rg.velocity.magnitude;
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (NowLine < 1)
-            {
-                transform.position += transform.right;
-                NowLine++;
-            }
+            transform.RotateAround(transform.GetChild(0).transform.position, transform.up, 90);
+            _rg.velocity = transform.forward * _rg.velocity.magnitude;
         }
     }
 }
