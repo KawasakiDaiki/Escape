@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+	public ItemManeger.Types type
+	{
+		get; set;
+	}
+
 
 	[SerializeField]float speed = 1.0f;
 	Rigidbody _rg;
+	bool deathFlg = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,13 +23,21 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if( _rg.velocity.magnitude < 10 )
+		//if( _rg.velocity.magnitude < 6 )
+		//{
+		//	_rg.AddForce( transform.forward * speed );
+		//}
+		//else
 		{
-			_rg.AddForce( transform.forward * speed );
+			_rg.velocity = transform.forward * 6;
 		}
-		else
+	}
+
+	void OnTriggerStay( Collider other )
+	{
+		if( other.gameObject.tag == "Player" )
 		{
-			_rg.velocity = transform.forward * 10;
+			deathFlg = true;
 		}
 	}
 }

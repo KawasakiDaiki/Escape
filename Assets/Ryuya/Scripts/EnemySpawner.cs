@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
 
 	[SerializeField] GameObject[] enemy;
 	[SerializeField] GameObject player;
-	[SerializeField] RectTransform rect;
+	//[SerializeField] RectTransform rect;
 
 	[SerializeField] GameObject canvas;
 	[SerializeField] GameObject[] enemyIcon;
@@ -46,8 +46,8 @@ public class EnemySpawner : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		uiSizeMove += 0.1f;
-		rect.sizeDelta = new Vector2( uiSizeX + uiSizeMove, uiSizeY + uiSizeMove );
+		//uiSizeMove += 0.1f;
+		//rect.sizeDelta = new Vector2( uiSizeX + uiSizeMove, uiSizeY + uiSizeMove );
 		waitTime -= 0.01f;
 		//Debug.Log( WaitTime );
 		if( waitTime <= -0.0f )
@@ -59,9 +59,9 @@ public class EnemySpawner : MonoBehaviour
 			float spawnZ = playerPos.position.z - ( playerPos.forward.z * 10 ) + ( playerPos.right.z * spawnSide );
 			GameObject instantiateEnemy = Instantiate( enemy[ enemyNumber ], new Vector3( spawnX, spawnY, spawnZ ), player.transform.rotation );
 
-			GameObject prefab = ( GameObject )Instantiate( enemyIcon[ enemyNumber ] );
-			prefab.transform.SetParent( canvas.transform, false );
-			IconController objectPass = prefab.GetComponent<IconController>();
+			GameObject eIcon = ( GameObject )Instantiate( enemyIcon[ enemyNumber ] );
+			eIcon.transform.SetParent( canvas.transform, false );
+			IconController objectPass = eIcon.GetComponent<IconController>();
 			Debug.Log( objectPass );
 			objectPass.GetEnemyObject( instantiateEnemy, spawnSide );
 
