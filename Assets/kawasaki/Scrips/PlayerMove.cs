@@ -44,7 +44,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         distance += _rg.velocity.magnitude;
-        RecodeText.text = "走距離:" + ((int)distance / Time.fixedDeltaTime).ToString();
+        RecodeText.text = "走距離:" + ((int)(distance * Time.fixedDeltaTime)).ToString();
     }
 
 
@@ -52,12 +52,12 @@ public class PlayerMove : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            transform.RotateAround(transform.GetChild(0).transform.position, transform.up, -90);
+            transform.RotateAround(transform.GetChild(0).transform.position, transform.up, 90);
             _rg.velocity = transform.forward * _rg.velocity.magnitude;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            transform.RotateAround(transform.GetChild(0).transform.position, transform.up, 90);
+            transform.RotateAround(transform.GetChild(0).transform.position, transform.up, -90);
             _rg.velocity = transform.forward * _rg.velocity.magnitude;
         }
     }

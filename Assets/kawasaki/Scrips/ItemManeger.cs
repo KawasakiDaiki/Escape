@@ -15,7 +15,7 @@ public class ItemManeger : MonoBehaviour
         TypeNum,
     }
     //デバッグ用に色変更
-    Color[] colors =
+    public static Color[] colors =
     {
         Color.red,
         Color.green,
@@ -23,11 +23,20 @@ public class ItemManeger : MonoBehaviour
         Color.black
     };
     [SerializeField]GameObject itemPrefav;
+    List<GameObject> ItemPool = new List<GameObject>();
+    int poolCount = 10;
+
     private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
+        for(int i = 0; i < poolCount; i++)
+        {
+            ItemPool.Add(Instantiate(itemPrefav));
+            ItemPool[i].SetActive(false);
+            ItemPool[i].transform.SetParent(transform);
+        }
     }
 
     // Update is called once per frame
@@ -40,10 +49,21 @@ public class ItemManeger : MonoBehaviour
     //ボタン入力されたらアイテムをインスタンス、ボタンごとにタイプ分け
     public void OnClick(int type)
     {
-        //プレイヤーの足元に生成
-        Vector3 footPos = player.transform.position - player.transform.up * 0.5f;
-        GameObject item = Instantiate(itemPrefav, footPos, Quaternion.identity);
-        item.GetComponent<ItemType>().type = (Types)type;
-        item.GetComponent<MeshRenderer>().material.color = colors[type];
+        int i = 0;
+        for (; i < poolCount; i++)
+        {
+            Debug.Log("a");
+
+            if (!ItemPool[i].activeSelf)
+            {
+                player.GetComponent<PlayerWideMove>().ItemCreator(type, ItemPool[i]);
+                return;
+            }
+        }
+        ItemPool.Add(Instantiate(itemPrefav));
+        poolCount = ItemPool.Count;
+        ItemPool[poolCount-1].transform.SetParent(transform);
+        player.GetComponent<PlayerWideMove>().ItemCreator(type, ItemPool[poolCount - 1]);
+
     }
 }
