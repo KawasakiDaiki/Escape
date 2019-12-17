@@ -32,7 +32,7 @@ public class ObjectsGenerater : MonoBehaviour
         if (time > pop_start&& Time.timeScale!=0)
         {
             tagObjects = GameObject.FindGameObjectsWithTag(tag_name);
-            if (tagObjects.Length < _pool.maxcount)
+            if (tagObjects.Length < _pool._maxcount)
             {
                 var objects = _pool.GetObject();
                 //ランダムに再配置
