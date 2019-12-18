@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3784073622889998449}
   - component: {fileID: 8315369070500330813}
   - component: {fileID: 1429508686026471606}
-  - component: {fileID: 798076120320216193}
   m_Layer: 0
   m_Name: RordPrefab
   m_TagString: Ground
@@ -68,19 +67,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
---- !u!114 &798076120320216193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3037434871383458595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1c908a4e49fdae4fa45787dc118ef51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxSpeed: 0
 --- !u!1001 &733091746341146539
 PrefabInstance:
   m_ObjectHideFlags: 0
