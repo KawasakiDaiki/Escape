@@ -19,6 +19,7 @@ public class ItemManeger : MonoBehaviour
         Color.yellow,
         Color.white,
     };
+
     [SerializeField]GameObject itemPrefav;
     List<GameObject> ItemPool = new List<GameObject>();
     int poolCount = 10;
@@ -68,7 +69,6 @@ public class ItemManeger : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("a");
             if (!player.GetComponent<PlayerHorizontalMover>().IsMoving)break;
             yield return null;
         }

@@ -9,7 +9,7 @@ namespace Player
         public int CurrentLine { get; set; }
         [SerializeField, Tooltip("左右移動にかける時間")] float moveTime;
 
-        bool isMoving;
+        public bool IsMoving { get; set; }
 
         void Start()
         {
@@ -22,14 +22,14 @@ namespace Player
         }
         void Move()
         {
-            if (!isMoving)
+            if (!IsMoving)
             {
-                if (Input.GetKeyDown(KeyCode.A) || flickInput.GetFlick(FlickDirection.Left) && CurrentLine > -1)
+                if ((Input.GetKeyDown(KeyCode.A) || flickInput.GetFlick(FlickDirection.Left)) && CurrentLine > -1)
                 {
                     StartCoroutine(MoveCoroutine(-transform.right));
                     CurrentLine--;
                 }
-                if (Input.GetKeyDown(KeyCode.D) || flickInput.GetFlick(FlickDirection.Right) && CurrentLine < 1)
+                if ((Input.GetKeyDown(KeyCode.D) || flickInput.GetFlick(FlickDirection.Right)) && CurrentLine < 1)
                 {
                     StartCoroutine(MoveCoroutine(transform.right));
                     CurrentLine++;
@@ -39,7 +39,7 @@ namespace Player
 
         IEnumerator MoveCoroutine(Vector3 direction)
         {
-            isMoving = true;
+            IsMoving = true;
             float defaultPositionX = transform.localPosition.x;
             float targetPositionX = defaultPositionX + direction.x;
             float time = 0;
@@ -53,7 +53,7 @@ namespace Player
                 time += Time.deltaTime;
                 yield return null;
             }
-            isMoving = false;
+            IsMoving = false;
         }
     }
 }

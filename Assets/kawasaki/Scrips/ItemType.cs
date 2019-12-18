@@ -6,27 +6,30 @@ public class ItemType : MonoBehaviour
 {
     public ItemManeger.Types type { get; set; }
 
+    float speed = 1.0f;
     IEnumerator LifeCoroutine;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+
     void OnEnable()
     {
         LifeCoroutine=LifeCount();
         StartCoroutine(LifeCoroutine);
     }
+
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(0, 0, 1.0f*Time.deltaTime);
+        transform.position += new Vector3(0, 0, speed*Time.deltaTime);
     }
+
+
     IEnumerator LifeCount()
     {
         yield return new WaitForSeconds(3.0f);
         gameObject.SetActive(false);
         transform.position = new Vector3(100, 100, 100);
     }
+
+
 
     void OnTriggerEnter(Collider col)
     {
