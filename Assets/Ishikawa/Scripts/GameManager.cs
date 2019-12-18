@@ -19,6 +19,7 @@ public enum GameState
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     [SerializeField] Text scoreText;
+    [SerializeField] GameState gameState;
     public float TotalDistance { get; set; }
 
     public GameState State { get; set; }
@@ -27,7 +28,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     void Start()
     {
-        State = GameState.Title;
+        State = gameState;
     }
     void Update()
     {
