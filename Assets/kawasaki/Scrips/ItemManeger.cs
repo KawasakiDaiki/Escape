@@ -27,6 +27,8 @@ public class ItemManeger : MonoBehaviour
     int poolCount = 10;
 
     private GameObject player;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +45,6 @@ public class ItemManeger : MonoBehaviour
     void Update()
     {
     }
-
 
 
     //ボタン入力されたらアイテムをインスタンス、ボタンごとにタイプ分け
@@ -64,6 +65,7 @@ public class ItemManeger : MonoBehaviour
         poolCount = ItemPool.Count;
         ItemPool[poolCount-1].transform.SetParent(transform);
         ItemCreator(type, ItemPool[poolCount - 1]);
+
     }
 
     public void ItemCreator(int type, GameObject obj)
@@ -74,5 +76,16 @@ public class ItemManeger : MonoBehaviour
         obj.SetActive(true);
         obj.GetComponent<ItemType>().type = (Types)type;
         obj.GetComponent<MeshRenderer>().material.color = colors[type];
+    }
+
+    void ItemMove(GameObject itemObj)
+    {
+        itemObj.transform.position += new Vector3(0, 0, -1);
+    }
+
+    IEnumerator LifeCount(GameObject itemObj)
+    {
+        yield return new WaitForSeconds(3.0f);
+        itemObj.SetActive(false);
     }
 }
