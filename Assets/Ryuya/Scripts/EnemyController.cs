@@ -9,8 +9,8 @@ public class EnemyController : MonoBehaviour
 		get; set;
 	}
 
+	GameObject playerPos;
 
-	[SerializeField] float speed = 1.0f;
 	[SerializeField] float maxSpeed = 6.0f;
 	Rigidbody _rg;
 	bool deathFlg = false;
@@ -19,7 +19,8 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
 		_rg = GetComponent<Rigidbody>();
-    }
+		playerPos = GameObject.Find( "PlayerManeger" );
+	}
 
     // Update is called once per frame
     void Update()
@@ -29,9 +30,15 @@ public class EnemyController : MonoBehaviour
 		//	_rg.AddForce( transform.forward * speed );
 		//}
 		//else
-		{
-			_rg.velocity = transform.forward * maxSpeed;
-		}
+
+		_rg.velocity = -transform.forward * maxSpeed;
+
+		Vector3 pPos = playerPos.GetComponent<Transform>().position;
+		Vector3 ePos = this.gameObject.transform.position;
+
+		float Distance = Vector3.SqrMagnitude( pPos - ePos );
+		Debug.Log( Distance );
+
 	}
 
 	void OnTriggerStay( Collider other )

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
+	[SerializeField] bool debugMode;
 
 	[SerializeField] GameObject[] enemy;
 	[SerializeField] GameObject player;
@@ -41,6 +42,8 @@ public class EnemySpawner : MonoBehaviour
 	private int enemyNumber = 0;
 	//スポーンする位置を変える変数
 	private int spawnSide = 0;
+	//敵の種類を制御する変数
+	[SerializeField] int enemyTypeVar = 0;
 
 	//UIのサイズ定数
 	const float uiSizeX = 100;
@@ -67,61 +70,62 @@ public class EnemySpawner : MonoBehaviour
 		if( waitTime <= -0.0f )
 		{
 			Transform playerPos = player.GetComponent<Transform>();
-			float spawnX = playerPos.position.x - ( playerPos.forward.x * distance ) + ( playerPos.right.x * spawnSide );
+			float spawnX = playerPos.position.x - ( -playerPos.forward.x * distance ) + ( playerPos.right.x * spawnSide );
 			float spawnY = playerPos.position.y;
-			float spawnZ = playerPos.position.z - ( playerPos.forward.z * distance ) + ( playerPos.right.z * spawnSide );
+			float spawnZ = playerPos.position.z - ( -playerPos.forward.z * distance ) + ( playerPos.right.z * spawnSide );
 			GameObject instantiateEnemy = Instantiate( enemy[ enemyNumber ], 
 														new Vector3( spawnX, spawnY, spawnZ ), 
 														player.transform.rotation );
 
-			if( spawnSide == -1 )
-			{
-				enemyListLeft.Add( instantiateEnemy );
-				Debug.Log( "trueL" );
-				GameObject eIcon = GameObject.Find( imageNameLeft[ listL ] );
-				eIcon.GetComponent<Image>().enabled = true;
-				Debug.Log( eIcon.name );
-				IconController objectPass = eIcon.GetComponent<IconController>();
-				objectPass.GetEnemyObject( instantiateEnemy, true );
-				if( listL++ > 2 )
-				{
-					listL = 0;
-				}
-			}
-			else if( spawnSide == 0 )
-			{
-				enemyListCenter.Add( instantiateEnemy );
-				Debug.Log( "trueC" );
+			//if( spawnSide == -1 )
+			//{
+			//	enemyListLeft.Add( instantiateEnemy );
+			//	Debug.Log( "trueL" );
+			//	GameObject eIcon = GameObject.Find( imageNameLeft[ listL ] );
+			//	eIcon.GetComponent<Image>().enabled = true;
+			//	Debug.Log( eIcon.name );
+			//	IconController objectPass = eIcon.GetComponent<IconController>();
+			//	objectPass.GetEnemyObject( instantiateEnemy, true );
+			//	if( listL++ > 2 )
+			//	{
+			//		listL = 0;
+			//	}
+			//}
+			//else if( spawnSide == 0 )
+			//{
+			//	enemyListCenter.Add( instantiateEnemy );
+			//	Debug.Log( "trueC" );
 
-				GameObject eIcon = GameObject.Find( imageNameCenter[ listC ] );
-				eIcon.GetComponent<Image>().enabled = true;
+			//	GameObject eIcon = GameObject.Find( imageNameCenter[ listC ] );
+			//	eIcon.GetComponent<Image>().enabled = true;
 
-				Debug.Log( eIcon.name );
+			//	Debug.Log( eIcon.name );
 
-				IconController objectPass = eIcon.GetComponent<IconController>();
-				objectPass.GetEnemyObject( instantiateEnemy, true );
+			//	IconController objectPass = eIcon.GetComponent<IconController>();
+			//	objectPass.GetEnemyObject( instantiateEnemy, true );
 
-				if( listL++ > 2 )
-				{
-					listL = 0;
-				}
-			}
-			else if( spawnSide == 1 )
-			{
-				enemyListRight.Add( instantiateEnemy );
-				Debug.Log( "trueR" );
-				GameObject eIcon = GameObject.Find( imageNameRight[ listR ] );
-				eIcon.GetComponent<Image>().enabled = true;
-				Debug.Log( eIcon.name );
-				IconController objectPass = eIcon.GetComponent<IconController>();
-				objectPass.GetEnemyObject( instantiateEnemy, true );
-				if( listL++ > 2 )
-				{
-					listL = 0;
-				}
-			}
+			//	if( listL++ > 2 )
+			//	{
+			//		listL = 0;
+			//	}
+			//}
+			//else if( spawnSide == 1 )
+			//{
+			//	enemyListRight.Add( instantiateEnemy );
+			//	Debug.Log( "trueR" );
+			//	GameObject eIcon = GameObject.Find( imageNameRight[ listR ] );
+			//	eIcon.GetComponent<Image>().enabled = true;
+			//	Debug.Log( eIcon.name );
+			//	IconController objectPass = eIcon.GetComponent<IconController>();
+			//	objectPass.GetEnemyObject( instantiateEnemy, true );
+			//	if( listL++ > 2 )
+			//	{
+			//		listL = 0;
+			//	}
+			//}
 
 			EnemyInit();
+
 		}
 	}
 
@@ -129,9 +133,9 @@ public class EnemySpawner : MonoBehaviour
 	void EnemyInit()
 	{
 		waitTime = waitState;
-		randomTime = Random.Range( 0f, 3f );
+		randomTime = Random.Range( 6f, 7f );
 		waitTime += randomTime;
-		enemyNumber = Random.Range( 1, 4 );
+		enemyNumber = Random.Range( 0, enemyTypeVar );
 		spawnSide = Random.Range( -1, 2 );
 	}
 }
