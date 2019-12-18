@@ -10,7 +10,8 @@ public class EnemyController : MonoBehaviour
 	}
 
 
-	[SerializeField]float speed = 1.0f;
+	[SerializeField] float speed = 1.0f;
+	[SerializeField] float maxSpeed = 6.0f;
 	Rigidbody _rg;
 	bool deathFlg = false;
 
@@ -29,7 +30,7 @@ public class EnemyController : MonoBehaviour
 		//}
 		//else
 		{
-			_rg.velocity = transform.forward * 6;
+			_rg.velocity = transform.forward * maxSpeed;
 		}
 	}
 
@@ -38,6 +39,7 @@ public class EnemyController : MonoBehaviour
 		if( other.gameObject.tag == "Player" )
 		{
 			deathFlg = true;
+			Debug.Log( deathFlg );
 		}
 	}
 }
