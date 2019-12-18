@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
     public Text RecodeText;
 
     Rigidbody _rg;
-    private float maxSpeed=5;
+    private float maxSpeed=0;
     private float distance = 0;
 
 

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 54258859951810936}
   - component: {fileID: 114041660222121440}
   m_Layer: 0
-  m_Name: Enemy2
+  m_Name: Ghost
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230964281013678666}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -121,4 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ed5804f7cabe54488e1f0b42c9e3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  maxSpeed: 10
