@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8315369070500330813}
   - component: {fileID: 1429508686026471606}
   - component: {fileID: 798076120320216193}
+  - component: {fileID: 95925503109626204}
   m_Layer: 0
   m_Name: RordPrefab 1
   m_TagString: Ground
@@ -81,6 +82,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 0
+--- !u!95 &95925503109626204
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3037434871383458595}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 751f3d084996e2c44b790d8a4ad683e0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &733091746341146539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -278,6 +298,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3784073622889998449}
     m_Modifications:
+    - target: {fileID: 100000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
+      propertyPath: m_Name
+      value: RoadTemplate2 (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -333,10 +357,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
-      propertyPath: m_Name
-      value: RoadTemplate2 (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
@@ -353,6 +373,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3784073622889998449}
     m_Modifications:
+    - target: {fileID: 100000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
+      propertyPath: m_Name
+      value: RoadTemplate2
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -408,10 +432,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
-      propertyPath: m_Name
-      value: RoadTemplate2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
@@ -428,6 +448,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3784073622889998449}
     m_Modifications:
+    - target: {fileID: 100000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
+      propertyPath: m_Name
+      value: RoadTemplate2 (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -483,10 +507,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
-      propertyPath: m_Name
-      value: RoadTemplate2 (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
@@ -503,6 +523,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3784073622889998449}
     m_Modifications:
+    - target: {fileID: 100000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
+      propertyPath: m_Name
+      value: RoadTemplate2 (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -558,10 +582,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
-      propertyPath: m_Name
-      value: RoadTemplate2 (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1598218bcd7f57489d468bcaccbf3cf, type: 3}
