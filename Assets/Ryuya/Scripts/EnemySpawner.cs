@@ -8,15 +8,29 @@ public class EnemySpawner : MonoBehaviour
 
 	[SerializeField] GameObject[] enemy;
 	[SerializeField] GameObject player;
-	//[SerializeField] RectTransform rect;
 
 	[SerializeField] GameObject canvas;
-	[SerializeField] GameObject[] enemyIcon;
+	//[SerializeField] GameObject[] enemyIcon;
+
+	// Canvas/Imageの名前をあらかじめ入れておく変数
+	[SerializeField] string[] imageNameLeft;
+	[SerializeField] string[] imageNameCenter;
+	[SerializeField] string[] imageNameRight;
+
+	//ゲームオブジェクトのリスト(レーン順)
+	private List<GameObject> enemyListLeft = new List<GameObject>();
+	private List<GameObject> enemyListCenter = new List<GameObject>();
+	private List<GameObject> enemyListRight = new List<GameObject>();
+
+	// AddList時に使う変数
+	private int listR = 0;
+	private int listC = 0;
+	private int listL = 0;
 
 	//待機時間などはフレームで管理しています。
 
 	//基本となる待機時間の変数。そのうちこちらもタイミング変更で変えていきます。
-	private float waitState = 1.0f;
+	private float waitState = 3.0f;
 	//実際に使用する(減算する)変数
 	private float waitTime = 3.0f;
 	//ランダムな時間を代入する変数
@@ -34,8 +48,10 @@ public class EnemySpawner : MonoBehaviour
 	//UIのサイズを変える変数
 	private float uiSizeMove = 0;
 
+	[SerializeField] float distance = 10.0f;
 
-
+	IEnumerator routine;
+	bool spawnFlg = false;
 
 	// Start is called before the first frame update
 	void Start()
@@ -46,24 +62,64 @@ public class EnemySpawner : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		//uiSizeMove += 0.1f;
-		//rect.sizeDelta = new Vector2( uiSizeX + uiSizeMove, uiSizeY + uiSizeMove );
 		waitTime -= 0.01f;
-		//Debug.Log( WaitTime );
+
 		if( waitTime <= -0.0f )
 		{
 			Transform playerPos = player.GetComponent<Transform>();
-			float spawnX = playerPos.position.x - ( playerPos.forward.x * 10 ) + ( playerPos.right.x * spawnSide );
-			//Debug.Log( spawnSide );
+			float spawnX = playerPos.position.x - ( playerPos.forward.x * distance ) + ( playerPos.right.x * spawnSide );
 			float spawnY = playerPos.position.y;
-			float spawnZ = playerPos.position.z - ( playerPos.forward.z * 10 ) + ( playerPos.right.z * spawnSide );
-			GameObject instantiateEnemy = Instantiate( enemy[ enemyNumber ], new Vector3( spawnX, spawnY, spawnZ ), player.transform.rotation );
+			float spawnZ = playerPos.position.z - ( playerPos.forward.z * distance ) + ( playerPos.right.z * spawnSide );
+			GameObject instantiateEnemy = Instantiate( enemy[ enemyNumber ], 
+														new Vector3( spawnX, spawnY, spawnZ ), 
+														player.transform.rotation );
 
-			GameObject eIcon = ( GameObject )Instantiate( enemyIcon[ enemyNumber ] );
-			eIcon.transform.SetParent( canvas.transform, false );
-			IconController objectPass = eIcon.GetComponent<IconController>();
-			//Debug.Log( objectPass );
-			objectPass.GetEnemyObject( instantiateEnemy, spawnSide );
+			if( spawnSide == -1 )
+			{
+				enemyListLeft.Add( instantiateEnemy );
+				Debug.Log( "trueL" );
+				GameObject eIcon = GameObject.Find( imageNameLeft[ listL ] );
+				eIcon.GetComponent<Image>().enabled = true;
+				Debug.Log( eIcon.name );
+				IconController objectPass = eIcon.GetComponent<IconController>();
+				objectPass.GetEnemyObject( instantiateEnemy, true );
+				if( listL++ > 2 )
+				{
+					listL = 0;
+				}
+			}
+			else if( spawnSide == 0 )
+			{
+				enemyListCenter.Add( instantiateEnemy );
+				Debug.Log( "trueC" );
+
+				GameObject eIcon = GameObject.Find( imageNameCenter[ listC ] );
+				eIcon.GetComponent<Image>().enabled = true;
+
+				Debug.Log( eIcon.name );
+
+				IconController objectPass = eIcon.GetComponent<IconController>();
+				objectPass.GetEnemyObject( instantiateEnemy, true );
+
+				if( listL++ > 2 )
+				{
+					listL = 0;
+				}
+			}
+			else if( spawnSide == 1 )
+			{
+				enemyListRight.Add( instantiateEnemy );
+				Debug.Log( "trueR" );
+				GameObject eIcon = GameObject.Find( imageNameRight[ listR ] );
+				eIcon.GetComponent<Image>().enabled = true;
+				Debug.Log( eIcon.name );
+				IconController objectPass = eIcon.GetComponent<IconController>();
+				objectPass.GetEnemyObject( instantiateEnemy, true );
+				if( listL++ > 2 )
+				{
+					listL = 0;
+				}
+			}
 
 			EnemyInit();
 		}

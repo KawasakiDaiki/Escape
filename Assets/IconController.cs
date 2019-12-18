@@ -6,16 +6,17 @@ public class IconController : MonoBehaviour
 {
 
 	GameObject enemyobject;
-	GameObject playerPos;
-	int side = 0;
+	[SerializeField] GameObject playerPos;
+	bool imageEnable = false;
 
     void Start()
     {
-		Debug.Log( enemyobject.name );
+		//Debug.Log( enemyobject.name );
 
-		RectTransform pos = GetComponent<RectTransform>();
-		pos.anchoredPosition = new Vector2( 120 * side, 180 );
-		playerPos = GameObject.FindGameObjectWithTag( "Player" );
+		//RectTransform pos = GetComponent<RectTransform>();
+		//pos.anchoredPosition = new Vector2( 400 * side, 700 );
+		//playerPos = GameObject.FindGameObjectWithTag( "Player" );
+		//gameObject.SetActive( true );
     }
 
     // Update is called once per frame
@@ -27,21 +28,21 @@ public class IconController : MonoBehaviour
             Vector3 ePos = enemyobject.GetComponent<Transform>().position;
             float distance = Vector3.SqrMagnitude(pPos - ePos);
 
-            float size = 50.0f + (100.0f - distance);
+            float size = 150.0f + (200.0f - distance);
 
             GetComponent<RectTransform>().sizeDelta = new Vector2(size, size);
         }
         else
         {
-            Destroy(gameObject);
+			
         }
         //Debug.Log( distance );
 
     }
 
-	public void GetEnemyObject( GameObject enemy, int spawnSide )
+	public void GetEnemyObject( GameObject enemy, bool imageFlg )
 	{
 		enemyobject = enemy;
-		side = spawnSide;
+		imageEnable = imageFlg;
 	}
 }
