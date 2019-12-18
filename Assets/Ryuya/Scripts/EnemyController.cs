@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-	public ItemManeger.Types type
-	{
-		get; set;
-	}
+    public ItemManeger.Types type
+    {
+        get; set;
+    }
 
 
 	[SerializeField] float speed = 1.0f;
@@ -18,7 +16,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		_rg = GetComponent<Rigidbody>();
+        _rg = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame

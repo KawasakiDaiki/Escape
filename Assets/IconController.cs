@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class IconController : MonoBehaviour
 {
@@ -26,7 +24,7 @@ public class IconController : MonoBehaviour
         {
             Vector3 pPos = playerPos.GetComponent<Transform>().position;
             Vector3 ePos = enemyobject.GetComponent<Transform>().position;
-            float distance = Vector3.SqrMagnitude(pPos - ePos);
+            float distance = Vector3.Distance(pPos, ePos);
 
             float size = 150.0f + (200.0f - distance);
 
