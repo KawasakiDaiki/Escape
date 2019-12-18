@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class FloorManagement : MonoBehaviour
@@ -17,7 +15,7 @@ public class FloorManagement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -26,7 +24,7 @@ public class FloorManagement : MonoBehaviour
         foreach (Transform item in transform)
         {
             item.localPosition += Vector3.forward * speed * Time.deltaTime;
-            if (item.localPosition.z > 60)
+            if (item.localPosition.z > 240)
             {
                 item.localPosition += Vector3.forward * _resetPosition;
             }
