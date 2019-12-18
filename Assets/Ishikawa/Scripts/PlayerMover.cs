@@ -34,6 +34,9 @@ namespace Player
             {
                 _rigidbody.velocity = transform.forward * maxSpeed;
             }
+
+            // 走った距離加算
+            GameManager.Instance.TotalDistance += _rigidbody.velocity.z * Time.fixedDeltaTime;
         }
 
 
