@@ -11,12 +11,6 @@ public class IconController : MonoBehaviour
 
     void Start()
     {
-		//Debug.Log( enemyobject.name );
-
-		//RectTransform pos = GetComponent<RectTransform>();
-		//pos.anchoredPosition = new Vector2( 400 * side, 700 );
-		//playerPos = GameObject.FindGameObjectWithTag( "Player" );
-		//gameObject.SetActive( true );
     }
 
     // Update is called once per frame

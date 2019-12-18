@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+	//<summary>
+	//敵のコントローラーです。
+	//</summary>
+
 	public ItemManeger.Types type
 	{
 		get; set;
@@ -25,28 +29,17 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		//if( _rg.velocity.magnitude < 6 )
-		//{
-		//	_rg.AddForce( transform.forward * speed );
-		//}
-		//else
-
-		_rg.velocity = -transform.forward * maxSpeed;
-
-		Vector3 pPos = playerPos.GetComponent<Transform>().position;
-		Vector3 ePos = this.gameObject.transform.position;
-
-		float Distance = Vector3.SqrMagnitude( pPos - ePos );
-		Debug.Log( Distance );
+		//敵の速度を変えます。
+		_rg.velocity = transform.forward * maxSpeed;
 
 	}
 
-	void OnTriggerStay( Collider other )
+	void OnTriggerEnter( Collider other )
 	{
+		//プレイヤーと衝突したらプレイヤーの死亡フラグが立ちます。
 		if( other.gameObject.tag == "Player" )
 		{
 			deathFlg = true;
-			Debug.Log( deathFlg );
 		}
 	}
 }
