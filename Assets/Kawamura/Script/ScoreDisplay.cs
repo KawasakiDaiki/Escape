@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class ScoreDisplay : MonoBehaviour
 {
-    public Text _ScoreLabel;
+    public Text _scoreLabel;
     [SerializeField]
-    private int _ScoreSpeed = 100;
-    private float _Score0 = 10000;
-    private float _Score1 = 0;
+    private int _scoreSpeed = 100;
+    private float _score0 = 10000;
+    private float _score1 = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -20,14 +20,14 @@ public class ScoreDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         if(_Score0 > _Score1)
+         if(_score0 > _score1)
         {
-            _Score1 += (_ScoreSpeed * Time.deltaTime);
+            _score1 += (_scoreSpeed * Time.deltaTime);
         }
-         else if(_Score0 <= _Score1)
+         else if(_score0 <= _score1)
         {
-            _Score1 =(int)_Score0;
+            _score1 =(int)_score0;
         }
-        _ScoreLabel.text = "SCORE:" + ((int)_Score1).ToString();
+        _scoreLabel.text = "SCORE:" + ((int)_score1).ToString();
     }
 }

@@ -27,7 +27,7 @@ public class FloorMove1 : MonoBehaviour
         }
         else
         {
-            _rg.velocity = transform.forward * 30;
+            _rg.velocity = transform.forward * 10;
         }
 
     }
