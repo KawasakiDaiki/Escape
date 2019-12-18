@@ -26,12 +26,12 @@ namespace Player
             {
                 if ((Input.GetKeyDown(KeyCode.A) || flickInput.GetFlick(FlickDirection.Left)) && CurrentLine > -1)
                 {
-                    StartCoroutine(MoveCoroutine(-transform.right));
+                    StartCoroutine(MoveCoroutine(Vector3.left));
                     CurrentLine--;
                 }
                 if ((Input.GetKeyDown(KeyCode.D) || flickInput.GetFlick(FlickDirection.Right)) && CurrentLine < 1)
                 {
-                    StartCoroutine(MoveCoroutine(transform.right));
+                    StartCoroutine(MoveCoroutine(Vector3.right));
                     CurrentLine++;
                 }
             }

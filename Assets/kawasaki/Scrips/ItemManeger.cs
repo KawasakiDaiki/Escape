@@ -73,7 +73,7 @@ public class ItemManeger : MonoBehaviour
             yield return null;
         }
         //プレイヤーの足元に生成
-        Vector3 footPos =player.transform.position /*- transform.up * 0.5f*/;
+        Vector3 footPos =player.transform.position - transform.up * 0.5f;
         obj.transform.position = footPos;
         obj.SetActive(true);
 
