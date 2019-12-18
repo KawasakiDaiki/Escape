@@ -46,27 +46,66 @@ public class EnemySpawner : MonoBehaviour
 	
 	void Start()
 	{
-		Debug.Log( GameManager.Instance.State );
-		GameManager.Instance.State++;
-		Debug.Log( GameManager.Instance.State );
+
 	}
 	
 
 	void Update()
 	{
-		waitTime -= 0.01f;
+		UpdateWaitTime();
 
-		if( waveState == 0 )
+		UpdateWave();
+
+		UpdateSpawn();
+
+		if( GameManager.Instance.TotalDistance >= 1000 )
 		{
-			waveState++;
-			GameManager.Instance.Day++;
-			spawnStart();
-			EnemyInit();
+			GameManager.Instance.State = GameState.CheckPoint;
+		}
+	}
+
+	void UpdateWaitTime()
+	{
+		waitTime -= 0.01f;
+	}
+
+	void UpdateWave()
+	{
+
+		if( GameManager.Instance.TotalDistance == 350 )
+		{
+			waveState = 2;
+		}
+		if( GameManager.Instance.TotalDistance == 700 )
+		{
+			waveState = 3;
 		}
 
-		if( waitTime <= -0.0f )
+		if( waveState != 0 )
 		{
-			
+			return;
+		}
+		waveState++;
+		GameManager.Instance.Day++;
+		spawnStart();
+		Debug.Log( "true" );
+		EnemyInit();
+	}
+
+	void UpdateSpawn()
+	{
+		if( waitTime > 0.0f )
+		{
+			return;
+		}
+
+		Spawn();
+	}
+
+	void Spawn()
+	{
+		for( int i = 0; i < spawnVar; i++ )
+		{
 			Transform playerPos = player.GetComponent<Transform>();
 			float spawnX = playerPos.right.x * spawnSide;
 			float spawnY = playerPos.position.y;
@@ -75,21 +114,20 @@ public class EnemySpawner : MonoBehaviour
 														new Vector3( spawnX, spawnY, spawnZ ),
 														player.transform.rotation );
 			EnemyInit();
-
-			if( multiSpawnWaitTime++ >= 3 )
-			{
-				for( ; spawnVar >= 2; )
-				{
-					spawnVar += Random.Range( ( int )( GameManager.Instance.Day / ( float )0.2 ), ( int )spawnMaxVar + 1 );
-				}
-				//multiSpawnWaitTime = 3;
-				multiSpawnWaitTime++;
-				if( spawnVar >= 2 )
-				{
-					multiSpawnWaitTime = 3;
-				}
-			}
 		}
+
+		//if( multiSpawnWaitTime++ >= 3 )
+		//{
+		spawnVar = Random.Range( ( int )( GameManager.Instance.Day / ( float )0.2 ), ( int )spawnMaxVar + 1 );
+		Debug.Log( spawnMaxVar );
+		//Debug.Log( GameManager.Instance.TotalDistance );
+			//multiSpawnWaitTime = 3;
+			//multiSpawnWaitTime++;
+			//if( spawnVar >= 2 )
+			//{
+			//	multiSpawnWaitTime = 3;
+			//}
+		//}
 	}
 
 	//時間、スポーンする敵、スポーンするサイドを変える初期処理のようなもの

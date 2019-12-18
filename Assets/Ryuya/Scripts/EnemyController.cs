@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
         get; set;
     }
 
-	[SerializeField] float maxSpeed = 6.0f;
+	[SerializeField] float maxSpeed = 5.0f;
 	Rigidbody _rg;
 	bool deathFlg = false;
 
@@ -20,15 +20,16 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		_rg.velocity = transform.forward * maxSpeed;
+		_rg.velocity = -transform.forward * maxSpeed;
 	}
 
-	void OnTriggerStay( Collider other )
+	void OnTriggerEnter( Collider other )
 	{
 		if( other.gameObject.tag == "Player" )
 		{
-			deathFlg = true;
-			Debug.Log( deathFlg );
+			Debug.Log( GameManager.Instance.State );
+			GameManager.Instance.State = GameState.GameOver;
+			Debug.Log( GameManager.Instance.State );
 		}
 	}
 }
