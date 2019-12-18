@@ -12,21 +12,17 @@ public class SceneReroad : MonoBehaviour
     private void Update()
     {
         _time += Time.deltaTime;
+        if (_time > _TimerLimit && Time.timeScale != 0)
+        {
+            TitleSceneTimer();
+        }
     }
     private void TitleSceneTimer()
     {
         
-        if(_time > _TimerLimit && Time.timeScale != 0)
-            {
-            TitleScene();
-            }
-    }
-    private void TitleScene()
-    {
         // 現在のScene名を取得する
         Scene loadScene = SceneManager.GetActiveScene();
         // Sceneの読み直し
         SceneManager.LoadScene(loadScene.name);
-
     }
 }
