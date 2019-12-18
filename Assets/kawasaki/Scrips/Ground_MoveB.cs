@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveManeger : MonoBehaviour
+public class Ground_MoveB : MonoBehaviour
 {
-    public static float PlayerDistance;
-    public int waveCount = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +13,6 @@ public class WaveManeger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position += new Vector3(0, 0, 1.0f * Time.deltaTime);
     }
 }

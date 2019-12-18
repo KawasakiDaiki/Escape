@@ -19,19 +19,20 @@ public class ItemType : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position += new Vector3(0, 0, 1.0f*Time.deltaTime);
     }
-    public IEnumerator LifeCount()
+    IEnumerator LifeCount()
     {
         yield return new WaitForSeconds(3.0f);
         gameObject.SetActive(false);
+        transform.position = new Vector3(100, 100, 100);
     }
 
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Enemy")
         {
-            if (col.gameObject.GetComponent<EnemyController>().type == ItemManeger.Types.bean|| col.gameObject.GetComponent<EnemyController>().type == type)
+            if (col.gameObject.GetComponent<EnemyController>().type == ItemManeger.Types.money|| col.gameObject.GetComponent<EnemyController>().type == type)
             {
                 Debug.Log("hit");
                 Destroy(col.gameObject);
