@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove1 : MonoBehaviour
 {
     [SerializeField]
-    private float _MaxSpeed;
+    private float _maxSpeed;
     Rigidbody _rg;
     public int _MoveCount_x { get; private set; }
     //プレイヤーの横移動制限
@@ -21,7 +21,7 @@ public class PlayerMove1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    if (_rg.velocity.magnitude < _MaxSpeed)
+    if (_rg.velocity.magnitude < _maxSpeed)
         {
             _rg.AddForce(transform.forward * _speed);
         }
