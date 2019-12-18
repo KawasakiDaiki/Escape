@@ -14,7 +14,7 @@ public class CrossRoad : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        var player = other.GetComponent<PlayerMove1>();
+        var player = other.GetComponent<FloorMove1>();
         if(player)
         {
             

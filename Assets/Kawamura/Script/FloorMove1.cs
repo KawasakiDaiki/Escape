@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove1 : MonoBehaviour
+public class FloorMove1 : MonoBehaviour
 {
     [SerializeField]
     private float _maxSpeed;
@@ -19,7 +19,7 @@ public class PlayerMove1 : MonoBehaviour
     float _speed = 1;
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
     if (_rg.velocity.magnitude < _maxSpeed)
         {
@@ -27,16 +27,16 @@ public class PlayerMove1 : MonoBehaviour
         }
         else
         {
-            _rg.velocity = transform.forward * 10;
+            _rg.velocity = transform.forward * 30;
         }
 
     }
     private void OnTriggerStay(Collider other)
     {
         Debug.Log("aaaa");
-        if (other.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
             Debug.Log("iiii");
         }
     }
