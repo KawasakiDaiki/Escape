@@ -31,10 +31,13 @@ public class ItemType : MonoBehaviour
     {
         if (col.gameObject.tag == "Enemy")
         {
-            Debug.Log("hit");
-            Destroy(col.gameObject);
-            LifeCoroutine = null;
-            gameObject.SetActive(false);
+            if (col.gameObject.GetComponent<EnemyController>().type == ItemManeger.Types.bean|| col.gameObject.GetComponent<EnemyController>().type == type)
+            {
+                Debug.Log("hit");
+                Destroy(col.gameObject);
+                LifeCoroutine = null;
+                gameObject.SetActive(false);
+            }
         }
     }
 }
