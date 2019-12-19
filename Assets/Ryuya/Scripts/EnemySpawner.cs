@@ -51,7 +51,7 @@ public class EnemySpawner : MonoBehaviour
 	//ウェーブの状態
 	int waveState = 0;
 	//最大のウェーブ
-	bool bigWave = false;
+	int bigWave = 0;
 
 	
 	void Start()
@@ -117,7 +117,7 @@ public class EnemySpawner : MonoBehaviour
 		if( GameManager.Instance.TotalDistance == 700 )
 		{
 			waveState = 3;
-			bigWave = true;
+			bigWave += 1;
 		}
 	}
 
@@ -143,14 +143,7 @@ public class EnemySpawner : MonoBehaviour
 			yield return new WaitForSeconds( 0.5f );
 
 		}
-
-		if( !bigWave )
-		{
-
-		}
-		spawnVar = Random.Range( ( int )( GameManager.Instance.Day * ( float )0.2 ), ( int )spawnMaxVar + 1 );
-		Debug.Log( spawnVar );
-
+		SpawnQuantity();
 		yield break;
 	}
 
@@ -193,6 +186,27 @@ public class EnemySpawner : MonoBehaviour
 		}
 		//Debug.Log( spawnMaxVar );
 		waveState = 1;
-		bigWave = false;
+		bigWave = 0;
+	}
+
+	//スポーンの量を決める
+	void SpawnQuantity()
+	{
+		int rangeMin = ( int )( GameManager.Instance.Day * ( float )0.2 );
+
+		if( rangeMin > 3.0f )
+		{
+			rangeMin = 3;
+		}
+
+		int spawnLimit = 0;
+		if( ( int )spawnVar <= 4 )
+		{
+			spawnLimit = 1 + bigWave;
+		}
+
+		int rangeMax = ( int )spawnMaxVar + spawnLimit;
+		spawnVar = Random.Range( rangeMin, rangeMax );
+		Debug.Log( spawnVar );
 	}
 }
