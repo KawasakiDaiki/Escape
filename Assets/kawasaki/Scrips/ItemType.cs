@@ -23,12 +23,12 @@ public class ItemType : MonoBehaviour
     void Move()
     {
         transform.position += new Vector3(0, 0, (GameManager.Instance.PlayerSpeed+speedPreset) * Time.deltaTime);
-        if (transform.position.y > 0.1f)
-        {
-            transform.position -= new Vector3(0, 0.01f+Time.deltaTime, 0);
-        }
     }
 
+    public void StartCol()
+    {
+        StartCoroutine(LifeCount());
+    }
 
     //時間経過で自己消滅、画面外に移動
     IEnumerator LifeCount()
