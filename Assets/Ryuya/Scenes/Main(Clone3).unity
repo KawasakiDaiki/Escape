@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.0627451, g: 0.09411766, b: 0.20784315, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.02
+  m_FogDensity: 0.03
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -608,43 +608,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6898008962968785572, guid: 9420e5509db686345bb4b424f4d168ac,
         type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 1778684620}
-    - target: {fileID: 6898008962968785572, guid: 9420e5509db686345bb4b424f4d168ac,
-        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 375041968}
-    - target: {fileID: 6898008962968785572, guid: 9420e5509db686345bb4b424f4d168ac,
-        type: 3}
-      propertyPath: distance
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 6898008962968785572, guid: 9420e5509db686345bb4b424f4d168ac,
-        type: 3}
-      propertyPath: enemy.Array.data[0]
-      value: 
-      objectReference: {fileID: 3650983429637648100, guid: d7088947bad128f469fc4b46fa62c79f,
-        type: 3}
-    - target: {fileID: 6898008962968785572, guid: 9420e5509db686345bb4b424f4d168ac,
-        type: 3}
-      propertyPath: enemy.Array.data[2]
-      value: 
-      objectReference: {fileID: 5750529726367776666, guid: 4b9b47fe4612f2642b48ce352c0f2bcd,
-        type: 3}
-    - target: {fileID: 6898008962968785572, guid: 9420e5509db686345bb4b424f4d168ac,
-        type: 3}
-      propertyPath: enemy.Array.data[3]
-      value: 
-      objectReference: {fileID: 2749286338755229076, guid: cea4813c9ba21344da0a3fa05e33f534,
-        type: 3}
-    - target: {fileID: 6898008962968785572, guid: 9420e5509db686345bb4b424f4d168ac,
-        type: 3}
-      propertyPath: enemy.Array.data[1]
-      value: 
-      objectReference: {fileID: 6854682356159909599, guid: 9be6357d5b408e142b38f63044a560e1,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9420e5509db686345bb4b424f4d168ac, type: 3}
 --- !u!1 &568469090

@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     public ItemManeger.Types type{get; set;}
     public EnemySpawner.EnemyState state;
 
-	float speed = 12.0f;
+	float speed = 13.0f;
 
     float dashSpeed = 15.0f;
     bool dashFlg = false;

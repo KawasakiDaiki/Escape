@@ -44,15 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
-  - {fileID: 1653913476891318702, guid: 2097638cc6cd7854f960f011dcee36f0, type: 3}
-  - {fileID: 230964281013678666, guid: 7968af45366ebc44797a68ffc1bbe744, type: 3}
-  - {fileID: 8130763914938282209, guid: cf221e20edcf0fb4fbfc171ff578c73b, type: 3}
-  - {fileID: 3153002118442625550, guid: a23f608aa7e7ecb498dea31ec32e8701, type: 3}
+  - {fileID: 3650983429637648100, guid: d7088947bad128f469fc4b46fa62c79f, type: 3}
+  - {fileID: 6854682356159909599, guid: 9be6357d5b408e142b38f63044a560e1, type: 3}
+  - {fileID: 5750529726367776666, guid: 4b9b47fe4612f2642b48ce352c0f2bcd, type: 3}
+  - {fileID: 2749286338755229076, guid: cea4813c9ba21344da0a3fa05e33f534, type: 3}
   player: {fileID: 0}
-  rect: {fileID: 0}
-  canvas: {fileID: 0}
-  enemyIcon:
-  - {fileID: 5298888802085843877, guid: 733fb6da62cf09c4da4e10e12dad6a2d, type: 3}
-  - {fileID: 8866072395415014250, guid: 517016f3f91d57c4eaeb59f73f58464a, type: 3}
-  - {fileID: 7095539010089696046, guid: 5ba6a97919702d840a3bd55b5ed8a050, type: 3}
-  - {fileID: 2537403567837023475, guid: d66f6fe9b2d03264caa14559e0159e91, type: 3}
+  maxWaitTime: 3
+  enemyTypeVar: 2
+  distance: 70
