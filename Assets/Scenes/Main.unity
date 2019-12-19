@@ -522,6 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 637434525}
+  _nextStageButton: {fileID: 0}
   gameState: 0
   playerAnimator: {fileID: 0}
   <State>k__BackingField: 0
@@ -1765,8 +1766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a6f22f742f4b547aab64d3fa56adb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _BlackInOutSpeed: 0
-  timeLimit: 4
+  _startButton: {fileID: 0}
+  _timeLimit: 4
 --- !u!114 &1033389572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1987,8 +1988,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a6f22f742f4b547aab64d3fa56adb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _BlackInOutSpeed: 3000
-  timeLimit: 4
+  _startButton: {fileID: 0}
+  _timeLimit: 4
 --- !u!114 &1095462382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2916,7 +2917,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: -9
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -3549,6 +3550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1007237725}
+  _nextStageButton: {fileID: 0}
   gameState: 0
   playerAnimator: {fileID: 2042358463}
   <State>k__BackingField: 0
