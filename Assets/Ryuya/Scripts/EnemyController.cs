@@ -1,49 +1,84 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ 更新日:2019/12/19
+ 更新者:川崎大樹
+ 移動処理をRigidbody→transformに
+ 死亡処理、間違ったアイテムを投げられた時の処理追加
+ */
+
+using System.Collections;
 using UnityEngine;
 
-public class EnemyController : MoveBase
+public class EnemyController : MonoBehaviour
 {
 
-    public enum EnemyState
-    {
-        life,
-        death,
-        stop,
-    }
     public ItemManeger.Types type{get; set;}
-    public /*EnemySpawner.*/EnemyState state;
+    public EnemySpawner.EnemyState state;
 
-	float speed = 10.5f;
-	Rigidbody _rg;
+	float speed = 11.0f;
+
+    float dashSpeed = 15.0f;
+    bool dashFlg = false;
+    float dashTime = 0.5f;
+
 	bool deathFlg = false;
+
+    void Start()
+    {
+        speed = GameManager.Instance.PlayerSpeed * 1.1f;
+        dashSpeed= GameManager.Instance.PlayerSpeed * 1.5f;
+    }
 
     void Update()
     {
         Move();
     }
 
-    public override void Move()
+    void Move()
     {
         switch (state)
         {
             //生きている間は手前側に
-            case /*EnemySpawner.*/EnemyState.life:
-                MoveMyself(-speed);
+            case EnemySpawner.EnemyState.life:
+                LifeMove();
                 break;
+
+
             //死んだら地面と同じベクトルに
-            case /*EnemySpawner.*/EnemyState.death:
-                MoveMyself(BaseSpeed);
+            case EnemySpawner.EnemyState.death:
+                DeathMove();
                 break;
+
+
             //停止
-            case /*EnemySpawner.*/EnemyState.stop:
+            case EnemySpawner.EnemyState.stop:
                 break;
         }
     }
-    //移動処理、speedの速度でz方向へ
+    // 状態ごとの動き
+    void LifeMove()
+    {
+        if (!dashFlg)
+        {
+            MoveMyself(-speed);
+        }
+        else
+        {
+            MoveMyself(-dashSpeed);
+        }
+    }
+    void DeathMove()
+    {
+        MoveMyself(GameManager.Instance.PlayerSpeed);
+    }
+    //void Stop()
+    //{
+
+    //}
+
+    //speed毎秒で移動
     void MoveMyself(float speed)
     {
-        transform.position += new Vector3(0, 0, speed*Time.deltaTime);
+        transform.position += Vector3.forward * (speed * Time.deltaTime);
     }
 
     /// <summary>
@@ -61,28 +96,39 @@ public class EnemyController : MoveBase
     {
         yield return new WaitForSeconds(1.5f);
 
-        DestroyEvent();
+        CallDesEffect();
+    }
+    IEnumerator Dash()
+    {
+        dashFlg = true;
+        //GetComponent<Collider>().enabled = false;
+        yield return new WaitForSeconds(dashTime*2/3);
+        //GetComponent<Collider>().enabled = true;
+        yield return new WaitForSeconds(dashTime*1/3);
+        dashFlg = false;
     }
 
-    //アニメーション後に破壊する用
-    void DestroyEvent()
-    {
-        Destroy(this.gameObject);
-    }
     //Enemyと当たったら
-    public override void OnTriggerEnter(Collider col)
+    void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Seed")
         {
             if (col.gameObject.GetComponent<ItemType>().type == type)
             {
-                state = /*EnemySpawner.*/EnemyState.death;
+                state = EnemySpawner.EnemyState.death;
                 StartCoroutine(DesEvent());
 
-                ItemManeger.HitEnemy(col.gameObject);
+                ItemManeger.ReturnPool(col.gameObject);
+            }
+            else
+            {
+                StartCoroutine(Dash());
             }
         }
     }
+
+
+    
     //ゲームオーバー処理
     void OnTriggerStay( Collider other )
 	{
@@ -92,5 +138,11 @@ public class EnemyController : MoveBase
 			Debug.Log( deathFlg );
 		}
 	}
+    
+    //アニメーション後に破壊する用
+    void CallDesEffect()
+    {
+        Destroy(this.gameObject);
+    }
     
 }

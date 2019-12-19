@@ -11,13 +11,13 @@ using Player;
 public class ItemManeger : MonoBehaviour
 {
     // パーティクルを格納
-    [SerializeField,Tooltip("0:money/1:salt")] GameObject[] Particles;
+    [SerializeField,Tooltip("0:salt/1:money")] GameObject[] Particles;
 
     // アイテムの種類
     public enum Types
     {
-        money,
         salt,
+        money,
 
         TypeNum,
     }
@@ -73,7 +73,7 @@ public class ItemManeger : MonoBehaviour
     public void ItemCreator(int type, GameObject itemObj)
     {
         Vector3 footPos =player.transform.parent.transform.position;
-        footPos.x -= player.GetComponent<PlayerHorizontalMover>().CurrentLine;
+        footPos.x += player.GetComponent<PlayerHorizontalMover>().CurrentLine;
 
         //プレイヤー座標に生成
         itemObj.transform.position = footPos;
@@ -85,9 +85,11 @@ public class ItemManeger : MonoBehaviour
 
         //type設定
         itemObj.GetComponent<ItemType>().type = (Types)type;
+        itemObj.GetComponent<ItemType>().StartCol();
     }
 
-    public static void HitEnemy(GameObject seed)
+    //エネミーから呼ばれるとpoolにオブジェクトを返す
+    public static void ReturnPool(GameObject seed)
     {
         seed.SetActive(false);
         seed.transform.position = new Vector3(100, 100, 100);

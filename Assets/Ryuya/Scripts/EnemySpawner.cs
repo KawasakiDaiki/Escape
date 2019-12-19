@@ -5,8 +5,14 @@ using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
-	//敵のオブジェクト
-	[SerializeField] GameObject[] enemy;
+    public enum EnemyState
+    {
+        life,
+        death,
+        stop,
+    }
+    //敵のオブジェクト
+    [SerializeField] GameObject[] enemy;
 
 	//プレイヤーのオブジェクト
 	[SerializeField] GameObject player;

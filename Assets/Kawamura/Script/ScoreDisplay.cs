@@ -27,7 +27,6 @@ public class ScoreDisplay : MonoBehaviour
          else if(_score0 <= _score1)
         {
             _score1 =(int)_score0;
-        }
-        _scoreLabel.text = "SCORE:" + ((int)_score1).ToString();
+        }        
     }
 }
