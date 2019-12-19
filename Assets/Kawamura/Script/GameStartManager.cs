@@ -16,4 +16,23 @@ public class GameStartManager : MonoBehaviour
         FloorManager.SetActive(true);
         GameCavas.SetActive(true);
     }
+
+    private void Update()
+    {
+        if (GameManager.Instance.State != GameState.InGame)
+        {
+            Player.SetActive(false);
+            BackGround.SetActive(false);
+            FloorManager.SetActive(false);
+            GameCavas.SetActive(false);
+        }
+        else
+        {
+            Player.SetActive(true);
+            BackGround.SetActive(true);
+            FloorManager.SetActive(true);
+            GameCavas.SetActive(true);
+        }
+
+    }
 }
