@@ -85,6 +85,7 @@ public class ItemManeger : MonoBehaviour
 
         //type設定
         itemObj.GetComponent<ItemType>().type = (Types)type;
+        itemObj.GetComponent<ItemType>().StartCol();
     }
 
     //エネミーから呼ばれるとpoolにオブジェクトを返す
