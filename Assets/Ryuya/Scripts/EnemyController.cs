@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		_rg.velocity = -transform.forward * maxSpeed;
+		_rg.velocity = Vector3.forward * maxSpeed;
 	}
 
 	void OnTriggerEnter( Collider other )

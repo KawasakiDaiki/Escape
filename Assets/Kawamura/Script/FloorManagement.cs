@@ -21,6 +21,7 @@ public class FloorManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.Instance.State == GameState.InGame)
         foreach (Transform item in transform)
         {
             item.localPosition += Vector3.forward * speed * Time.deltaTime;

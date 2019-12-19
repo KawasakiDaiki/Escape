@@ -22,7 +22,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     [SerializeField] GameState gameState;
     public float TotalDistance { get; set; }
 
-    public GameState State { get; set; }
+   [field:SerializeField] public GameState State { get; set; }
 
     public int Day { get; set; }
 
@@ -36,5 +36,19 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             scoreText.text = TotalDistance.ToString("0") + "m";
         }
+    }
+
+    public void StartOnClick()
+    {
+        State = GameState.Help;
+        Debug.Log(GameManager.Instance.State);
+    }
+    public void HelpOnClick()
+    {
+        State = GameState.InGame;
+    }
+    public void CheckPointOnClick()
+    {
+        State = GameState.InGame;
     }
 }
