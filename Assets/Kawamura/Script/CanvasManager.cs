@@ -70,7 +70,7 @@ public class CanvasManager : MonoBehaviour
                 _titlePanel.SetActive(false);
                 _tutrialPanel.SetActive(false);
                 _resusltPanel.SetActive(true);
-                _inGamePanel.SetActive(true);
+                _inGamePanel.SetActive(false);
                 _checkPointPanel.SetActive(false);
                 _uiCamera.SetActive(true);
                 break;

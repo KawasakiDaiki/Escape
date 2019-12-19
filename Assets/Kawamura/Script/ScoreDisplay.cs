@@ -8,27 +8,36 @@ public class ScoreDisplay : MonoBehaviour
 {
     public Text _scoreLabel;
     [SerializeField]
-    private int _scoreSpeed = 100;
-    private float _score0 = GameManager.Instance.TotalDistance / 10;
+    GameObject _titleButton;
+    [SerializeField]
+    private float _scoreSpeed = 5;
+    private float _score0 = 0;
     private float _score1 = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+      
     }
 
     // Update is called once per frame
-    void Update()
+    void OnEnable()
     {
-        if(_score0 > _score1)
+
+        _score0 = GameManager.Instance.TotalDistance / 10;
+    }
+
+    private void Update()
+    {
+        _score1 += _scoreSpeed * Time.deltaTime;
+        if(_score1 < _score0)
         {
-            _score1 += _scoreSpeed * Time.deltaTime;
-            _scoreLabel.text = "SCORE" + _score1.ToString() + "m";
+            _scoreLabel.text = ((int)_score1).ToString() + "m";
         }
-        if(_score0 <= _score1)
+        else if(_score1 >= _score0)
         {
-            _scoreLabel.text = _score0.ToString("m");
+            _scoreLabel.text = ((int)_score0).ToString() + "m";
+            _titleButton.SetActive(true);
         }
-        _scoreLabel.text = (GameManager.Instance.TotalDistance / 10 ).ToString("0.0") + "m";
     }
 }
