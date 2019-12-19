@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.0627451, g: 0.09411766, b: 0.20784315, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.02
+  m_FogDensity: 0.03
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -875,7 +875,7 @@ PrefabInstance:
     - target: {fileID: 6898008962968785572, guid: 9420e5509db686345bb4b424f4d168ac,
         type: 3}
       propertyPath: distance
-      value: 30
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9420e5509db686345bb4b424f4d168ac, type: 3}
@@ -3655,10 +3655,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerManeger
       objectReference: {fileID: 0}
-    - target: {fileID: 2042358459, guid: 4f8b83eaa24162840a2a754d5d5ec8b3, type: 3}
-      propertyPath: itemManager
-      value: 
-      objectReference: {fileID: 897987426}
     - target: {fileID: 2749011325628879152, guid: 4f8b83eaa24162840a2a754d5d5ec8b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3729,6 +3725,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 101.60934
       objectReference: {fileID: 0}
+    - target: {fileID: 2042358459, guid: 4f8b83eaa24162840a2a754d5d5ec8b3, type: 3}
+      propertyPath: itemManager
+      value: 
+      objectReference: {fileID: 897987426}
     - target: {fileID: 3029709516264683447, guid: 4f8b83eaa24162840a2a754d5d5ec8b3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
