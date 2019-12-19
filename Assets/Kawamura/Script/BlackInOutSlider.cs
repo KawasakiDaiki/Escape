@@ -5,19 +5,27 @@ using UnityEngine;
 public class BlackInOutSlider : MonoBehaviour
 {
     [SerializeField]
-    private float _BlackInOutSpeed;
+    private float _blackInOutSpeed;
     [SerializeField]
     private float timeLimit = 4;
+    private Vector3 _resetPosition;
     private float timer = 0;
 
-    // Update is called once per frame
-    private void Update()
+    void Awake()
     {
-        transform.position -= new Vector3(_BlackInOutSpeed, 0,0) * Time.deltaTime;
+
+        _resetPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.position -= new Vector3(_blackInOutSpeed, 0, 0) * Time.deltaTime;
         timer += Time.deltaTime;
-        if (timer <= timeLimit)
+        if (timer >= timeLimit)
         {
-            this.gameObject.SetActive(false);
+            transform.position = _resetPosition;
         }
 
     }
