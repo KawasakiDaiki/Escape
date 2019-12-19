@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
 {
 
     public ItemManeger.Types type{get; set;}
-   // public EnemySpawner.EnemyState state;
+    public EnemySpawner.EnemyState state;
 
 	float speed = 11.0f;
 
@@ -52,8 +52,6 @@ public class EnemyController : MonoBehaviour
             //停止
             case EnemySpawner.EnemyState.stop:
                 break;
-
-            default:break;
         }
     }
     // 状態ごとの動き
@@ -115,8 +113,7 @@ public class EnemyController : MonoBehaviour
     {
         if (col.gameObject.tag == "Seed")
         {
-            ItemManeger.Types col_type = col.gameObject.GetComponent<ItemType>().type;
-            if (type == type)
+            if (col.gameObject.GetComponent<ItemType>().type == type)
             {
                 state = EnemySpawner.EnemyState.death;
                 StartCoroutine(DesEvent());

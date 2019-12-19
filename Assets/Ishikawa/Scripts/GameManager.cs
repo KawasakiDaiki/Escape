@@ -19,6 +19,7 @@ public enum GameState
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     [SerializeField] Text scoreText;
+    [SerializeField] GameObject _nextStageButton;
     [SerializeField] GameState gameState;
     public float TotalDistance { get; set; }
 
@@ -31,6 +32,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     void Awake()
     {
+        CheckInstance();
         PlayerSpeed = speed;
     }
     void Start()
@@ -43,6 +45,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             scoreText.text = (TotalDistance/10).ToString("0.0") + "m";
         }
+
     }
 
     public void StartOnClick()
@@ -56,6 +59,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     }
     public void CheckPointOnClick()
     {
+        _nextStageButton.SetActive(false);
         State = GameState.InGame;
     }
 }
