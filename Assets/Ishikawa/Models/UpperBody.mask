@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UpperBody
+  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000000000000000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: ambientLight1
+    m_Weight: 1
+  - m_Path: directionalLight1
+    m_Weight: 1
+  - m_Path: pCylinder7
+    m_Weight: 1
+  - m_Path: spine1
+    m_Weight: 1
+  - m_Path: spine1/Foot1_L
+    m_Weight: 0
+  - m_Path: spine1/Foot1_L/Foot2_L
+    m_Weight: 0
+  - m_Path: spine1/Foot1_L/Foot2_L/Foot3_L
+    m_Weight: 0
+  - m_Path: spine1/Foot1_L/Foot2_L/Foot3_L/Foot4_L
+    m_Weight: 0
+  - m_Path: spine1/Foot1_L/Foot2_L/Foot3_L/Foot4_L/Foot5_L
+    m_Weight: 0
+  - m_Path: spine1/Foot1_R
+    m_Weight: 0
+  - m_Path: spine1/Foot1_R/Foot2_R
+    m_Weight: 0
+  - m_Path: spine1/Foot1_R/Foot2_R/Foot3_R
+    m_Weight: 0
+  - m_Path: spine1/Foot1_R/Foot2_R/Foot3_R/Foot4_R
+    m_Weight: 0
+  - m_Path: spine1/Foot1_R/Foot2_R/Foot3_R/Foot4_R/Foot5_R
+    m_Weight: 0
+  - m_Path: spine1/spine2
+    m_Weight: 1
+  - m_Path: spine1/spine2/Arm1_L
+    m_Weight: 1
+  - m_Path: spine1/spine2/Arm1_L/Arm2_L
+    m_Weight: 1
+  - m_Path: spine1/spine2/Arm1_L/Arm2_L/Hand1_L
+    m_Weight: 1
+  - m_Path: spine1/spine2/Arm1_L/Arm2_L/Hand1_L/Hand2_L
+    m_Weight: 1
+  - m_Path: spine1/spine2/Arm1_L/Arm2_L/Hand1_L/Hand3_L
+    m_Weight: 1
+  - m_Path: spine1/spine2/Arm1_R
+    m_Weight: 1
+  - m_Path: spine1/spine2/Arm1_R/Arm2_R
+    m_Weight: 1
+  - m_Path: spine1/spine2/Arm1_R/Arm2_R/Hand1_R
+    m_Weight: 1
+  - m_Path: spine1/spine2/Arm1_R/Arm2_R/Hand1_R/Hand2_R
+    m_Weight: 1
+  - m_Path: spine1/spine2/Arm1_R/Arm2_R/Hand1_R/Hand3_R
+    m_Weight: 1
+  - m_Path: spine1/spine2/Head1
+    m_Weight: 1
+  - m_Path: spine1/spine2/Head1/Head2
+    m_Weight: 1

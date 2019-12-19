@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// フリックの方向の列挙体
@@ -35,31 +36,35 @@ public class FlickInput : MonoBehaviour
         // 前フレームの状態を記録
         previousFlickState = flickState;
 
-        if (Input.GetMouseButtonDown(0))
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            previousPosition = Input.mousePosition;
-        }
-        if (Input.GetMouseButton(0))
-        {
-            // 1フレームの移動量
-            Vector3 deltaDistance = Input.mousePosition - previousPosition;
-            previousPosition = Input.mousePosition;
-            if (deltaDistance.sqrMagnitude > minSpeed * minSpeed)
+            if (Input.GetMouseButtonDown(0))
             {
-                float angle = Mathf.Atan2(deltaDistance.x, deltaDistance.y) * Mathf.Rad2Deg;
-                if ((RightAngle - detectionAngle / 2) < angle && angle < (RightAngle + detectionAngle / 2))
+                previousPosition = Input.mousePosition;
+            }
+            if (Input.GetMouseButton(0))
+            {
+
+                // 1フレームの移動量
+                Vector3 deltaDistance = Input.mousePosition - previousPosition;
+                previousPosition = Input.mousePosition;
+                if (deltaDistance.sqrMagnitude > minSpeed * minSpeed)
                 {
-                    flickState = FlickDirection.Right;
-                }
-                if ((LeftAngle - detectionAngle / 2) < angle && angle < (LeftAngle + detectionAngle / 2))
-                {
-                    flickState = FlickDirection.Left;
+                    float angle = Mathf.Atan2(deltaDistance.x, deltaDistance.y) * Mathf.Rad2Deg;
+                    if ((RightAngle - detectionAngle / 2) < angle && angle < (RightAngle + detectionAngle / 2))
+                    {
+                        flickState = FlickDirection.Right;
+                    }
+                    if ((LeftAngle - detectionAngle / 2) < angle && angle < (LeftAngle + detectionAngle / 2))
+                    {
+                        flickState = FlickDirection.Left;
+                    }
                 }
             }
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            flickState = FlickDirection.None;
+            if (Input.GetMouseButtonUp(0))
+            {
+                flickState = FlickDirection.None;
+            }
         }
     }
 
