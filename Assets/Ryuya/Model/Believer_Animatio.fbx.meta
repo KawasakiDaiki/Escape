@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: be9daa4b6c8c84c4591fc0b9bf97f033
+guid: 0cab0e7f9f0c54a43a43484d1348c61a
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,8 +8,8 @@ ModelImporter:
     100004: Arm1_R
     100006: Arm2_L
     100008: Arm2_R
-    100010: directionalLight1
-    100012: //RootNode
+    100010: //RootNode
+    100012: directionalLight1
     100014: Foot1_L
     100016: Foot1_R
     100018: Foot2_L
@@ -28,16 +28,17 @@ ModelImporter:
     100044: Hand3_R
     100046: Head1
     100048: Head2
-    100050: polySurface2
-    100052: spine1
-    100054: spine2
+    100050: polySurface5
+    100052: polySurface6
+    100054: spine1
+    100056: spine2
     400000: ambientLight1
     400002: Arm1_L
     400004: Arm1_R
     400006: Arm2_L
     400008: Arm2_R
-    400010: directionalLight1
-    400012: //RootNode
+    400010: //RootNode
+    400012: directionalLight1
     400014: Foot1_L
     400016: Foot1_R
     400018: Foot2_L
@@ -56,16 +57,20 @@ ModelImporter:
     400044: Hand3_R
     400046: Head1
     400048: Head2
-    400050: polySurface2
-    400052: spine1
-    400054: spine2
-    2100000: TX_MobCharacter3
-    4300000: polySurface2
-    7400000: Drunkman_Animatio
-    7400002: Drunkman_Animatio (1)
-    7400004: Drunkman_JapaneseDogeza
+    400050: polySurface5
+    400052: polySurface6
+    400054: spine1
+    400056: spine2
+    2100000: TX_Believer
+    2300000: polySurface5
+    3300000: polySurface5
+    4300000: polySurface6
+    4300002: polySurface5
+    7400000: Believer_Walk
+    7400002: Believer_Walk
+    7400004: Believer_Death
     9500000: //RootNode
-    13700000: polySurface2
+    13700000: polySurface6
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -95,10 +100,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Drunkman_Animatio
-      takeName: Drunkman_Animatio
+      name: Believer_Walk
+      takeName: Believer_Animatio
       firstFrame: 6
-      lastFrame: 35
+      lastFrame: 95
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -123,38 +128,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Drunkman_Animatio (1)
-      takeName: Drunkman_Animatio
-      firstFrame: 0
-      lastFrame: 65
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Drunkman_JapaneseDogeza
-      takeName: Drunkman_Animatio
-      firstFrame: 36
-      lastFrame: 65
+      name: Believer_Death
+      takeName: Believer_Animatio
+      firstFrame: 95
+      lastFrame: 135
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

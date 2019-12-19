@@ -12,9 +12,9 @@ public class EnemyController : MonoBehaviour
 {
 
     public ItemManeger.Types type{get; set;}
-   // public EnemySpawner.EnemyState state;
+    public EnemySpawner.EnemyState state;
 
-	float speed = 11.0f;
+	float speed = 12.0f;
 
     float dashSpeed = 15.0f;
     bool dashFlg = false;
@@ -24,8 +24,8 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        speed = GameManager.Instance.PlayerSpeed * 1.1f;
-        dashSpeed= GameManager.Instance.PlayerSpeed * 1.5f;
+        speed = GameManager.Instance.PlayerSpeed * 0.5f;
+        dashSpeed= GameManager.Instance.PlayerSpeed * 1.0f;
     }
 
     void Update()
@@ -46,14 +46,15 @@ public class EnemyController : MonoBehaviour
             //死んだら地面と同じベクトルに
             case EnemySpawner.EnemyState.death:
                 DeathMove();
-                break;
+				StartCoroutine( DesEvent() );
+				break;
 
 
             //停止
             case EnemySpawner.EnemyState.stop:
+				//DeathAni();
+				//StartCoroutine( DesEvent() );
                 break;
-
-            default:break;
         }
     }
     // 状態ごとの動き
@@ -91,11 +92,14 @@ public class EnemyController : MonoBehaviour
     /// </remarks>
     public void DeathAni()
     {
-        GetComponent<Animator>().SetTrigger(0);
+        GetComponent<Animator>().SetTrigger( "DeathTrigger" );
+		Debug.Log( "true" );
     }
+
     //疑似アニメーション後処理
     public IEnumerator DesEvent()
     {
+		DeathAni();
         yield return new WaitForSeconds(1.5f);
 
         CallDesEffect();
@@ -115,12 +119,10 @@ public class EnemyController : MonoBehaviour
     {
         if (col.gameObject.tag == "Seed")
         {
-            ItemManeger.Types col_type = col.gameObject.GetComponent<ItemType>().type;
-            if (type == type)
+			if (col.gameObject.GetComponent<ItemType>().type == type)
             {
                 state = EnemySpawner.EnemyState.death;
-                StartCoroutine(DesEvent());
-
+				//StartCoroutine(DesEvent());
                 ItemManeger.ReturnPool(col.gameObject);
             }
             else
@@ -130,10 +132,15 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+	//敵デストロイ
+	public void DestroyEnemy() {
 
-    
-    //ゲームオーバー処理
-    void OnTriggerStay( Collider other )
+		CallDesEffect();
+
+	}
+
+	//ゲームオーバー処理
+	void OnTriggerStay( Collider other )
 	{
 		if( other.gameObject.tag == "Player" )
 		{

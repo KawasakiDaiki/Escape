@@ -86,6 +86,7 @@ public class ItemManeger : MonoBehaviour
 
         //type設定
         itemObj.GetComponent<ItemType>().type = (Types)type;
+		Debug.Log( itemObj.GetComponent<ItemType>().type );
         itemObj.GetComponent<ItemType>().StartCol();
     }
 
