@@ -132,7 +132,8 @@ public class EnemySpawner : MonoBehaviour
 			instantiateEnemy.GetComponent<EnemyController>().type = (ItemManeger.Types)enemyNumber;
 			EnemyInit();
 
-			yield return new WaitForSeconds( 0.1f );
+
+            yield return new WaitForSeconds( 0.1f );
 
 		}
 		
