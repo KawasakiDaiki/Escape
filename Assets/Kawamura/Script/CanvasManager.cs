@@ -35,6 +35,7 @@ public class CanvasManager : MonoBehaviour
                 _resusltPanel.SetActive(false);
                 _inGamePanel.SetActive(false);
                 _checkPointPanel.SetActive(false);
+                Debug.Log(_checkPointPanel);
                 _uiCamera.SetActive(true);
                 break;
 

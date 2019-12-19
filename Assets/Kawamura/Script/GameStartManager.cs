@@ -11,8 +11,11 @@ public class GameStartManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        
-     }
+        Player.SetActive(true);
+        BackGround.SetActive(true);
+        FloorManager.SetActive(true);
+        GameCavas.SetActive(true);
+    }
 
     private void Update()
     {
