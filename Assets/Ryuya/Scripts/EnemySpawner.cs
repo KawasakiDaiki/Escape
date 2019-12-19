@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
 	//スポーンする位置を変える変数
 	int spawnSide = 0;
 	//敵の種類を制御する変数
-	[SerializeField] int enemyTypeVar = 0;
+	[SerializeField] int enemyTypeVar = 2;
 
 	//敵が生成される場所(プレイヤーとの場所の比較)
 	[SerializeField] float distance;
@@ -61,16 +61,19 @@ public class EnemySpawner : MonoBehaviour
 
 	void Update()
 	{
-		UpdateWaitTime();
-
-		UpdateWave();
-
-		UpdateSpawn();
-
-		if( GameManager.Instance.TotalDistance >= 1000 )
+		if( GameManager.Instance.State == GameState.InGame )
 		{
-			GameManager.Instance.State = GameState.CheckPoint;
-			VariableInit();
+			UpdateWaitTime();
+
+			UpdateWave();
+
+			UpdateSpawn();
+
+			//if( GameManager.Instance.TotalDistance >= 1000.0f )
+			//{
+			//	GameManager.Instance.State = GameState.CheckPoint;
+			//	VariableInit();
+			//}
 		}
 	}
 
@@ -83,7 +86,7 @@ public class EnemySpawner : MonoBehaviour
 	{
 		waveSetting();
 
-		if( !( GameManager.Instance.State == GameState.InGame ) && waveState != 0 )
+		if( waveState != 0 )
 		{
 			return;
 		}
@@ -91,7 +94,6 @@ public class EnemySpawner : MonoBehaviour
 		waveState++;
 		GameManager.Instance.Day += 1;
 		spawnStart();
-		Debug.Log( "true" );
 		EnemyInit();
 	}
 
@@ -131,7 +133,10 @@ public class EnemySpawner : MonoBehaviour
 			GameObject instantiateEnemy = Instantiate( enemy[ enemyNumber ],
 														new Vector3( spawnX, spawnY, spawnZ ),
 														Quaternion.Euler( 0, -180, 0 ) );
-			instantiateEnemy.GetComponent<EnemyController>().type = (ItemManeger.Types)enemyNumber;
+
+			instantiateEnemy.GetComponent<EnemyController>().type = ( ItemManeger.Types )( ( int )( enemyNumber / 2 ) );
+
+			Debug.Log( instantiateEnemy.GetComponent<EnemyController>().type );
 			Debug.Log( instantiateEnemy.name );
 			EnemyInit();
 
@@ -170,7 +175,7 @@ public class EnemySpawner : MonoBehaviour
 		waitTime += randomTime;
 		//Debug.Log( waitTime );
 		//Debug.Log( maxWaitTime );
-		enemyNumber = Random.Range( 0, enemyTypeVar );
+		enemyNumber = Random.Range( 0, 4 );
 		spawnSide = Random.Range( -1, 2 );
 	}
 
@@ -181,7 +186,7 @@ public class EnemySpawner : MonoBehaviour
 		{
 			spawnMaxVar = 3.0f;
 		}
-		Debug.Log( spawnMaxVar );
+		//Debug.Log( spawnMaxVar );
 		waveState = 1;
 	}
 }
