@@ -11,12 +11,17 @@ public class EnemySpawner : MonoBehaviour
 	//プレイヤーのオブジェクト
 	[SerializeField] GameObject player;
 
-	//基本となる待機時間の変数。そのうちこちらもタイミング変更で変えていきます。
-	private float maxWaitTime = 3.0f;
+	//最高待機時間を設定する
+	[SerializeField] float maxWaitTime = 3.0f;
+	//基本となる待機時間の変数。日によって変わります。
+	private float dayMaxWaitTime = 3.0f;
 	//実際に使用する(減算する)変数
 	private float waitTime = 3.0f;
 	//ランダムな時間を代入する変数
 	private float randomTime = 0f;
+	//敵のスポーン頻度を調整する( maxWaitTime - spawnFreq )
+	float spawnFreq = 0;
+
 	private float dimTime = 0.01f;
 
 	//ランダムで敵の種類を決める変数
@@ -26,12 +31,7 @@ public class EnemySpawner : MonoBehaviour
 	//敵の種類を制御する変数
 	[SerializeField] int enemyTypeVar = 0;
 
-	//UIのサイズ定数
-	const float uiSizeX = 100;
-	const float uiSizeY = 100;
-	//UIのサイズを変える変数
-	private float uiSizeMove = 0;
-
+	//敵が生成される場所(プレイヤーとの場所の比較)
 	[SerializeField] float distance = 10.0f;
 
 	//敵最大スポーン量
@@ -42,13 +42,14 @@ public class EnemySpawner : MonoBehaviour
 	int multiSpawnWaitTime = 3;
 	//ウェーブの状態
 	int waveState = 0;
+	//最大のウェーブ
+	bool bigWave = false;
 
 	
 	void Start()
 	{
-
+		variableInit();
 	}
-	
 
 	void Update()
 	{
@@ -61,6 +62,7 @@ public class EnemySpawner : MonoBehaviour
 		if( GameManager.Instance.TotalDistance >= 1000 )
 		{
 			GameManager.Instance.State = GameState.CheckPoint;
+			//variableInit();
 		}
 	}
 
@@ -71,22 +73,15 @@ public class EnemySpawner : MonoBehaviour
 
 	void UpdateWave()
 	{
-
-		if( GameManager.Instance.TotalDistance == 350 )
-		{
-			waveState = 2;
-		}
-		if( GameManager.Instance.TotalDistance == 700 )
-		{
-			waveState = 3;
-		}
+		waveSetting();
 
 		if( waveState != 0 )
 		{
 			return;
 		}
+
 		waveState++;
-		GameManager.Instance.Day++;
+		GameManager.Instance.Day += 4;
 		spawnStart();
 		Debug.Log( "true" );
 		EnemyInit();
@@ -99,10 +94,25 @@ public class EnemySpawner : MonoBehaviour
 			return;
 		}
 
-		Spawn();
+		StartCoroutine(Spawns());
+		EnemyInit();
 	}
 
-	void Spawn()
+	void waveSetting()
+	{
+		if( GameManager.Instance.TotalDistance == 350 )
+		{
+			waveState = 2;
+		}
+		if( GameManager.Instance.TotalDistance == 700 )
+		{
+			waveState = 3;
+			bigWave = true;
+		}
+	}
+
+	//enemy生成
+	IEnumerator Spawns()
 	{
 		for( int i = 0; i < spawnVar; i++ )
 		{
@@ -113,37 +123,51 @@ public class EnemySpawner : MonoBehaviour
 			GameObject instantiateEnemy = Instantiate( enemy[ enemyNumber ],
 														new Vector3( spawnX, spawnY, spawnZ ),
 														player.transform.rotation );
+			instantiateEnemy.GetComponent<EnemyController>().type = (ItemManeger.Types)enemyNumber;
 			EnemyInit();
+
+			yield return new WaitForSeconds( 0.1f );
+
+		}
+		
+		spawnVar = Random.Range( ( int )( GameManager.Instance.Day * ( float )0.2 ), ( int )spawnMaxVar + 1 );
+
+		yield break;
+	}
+
+	void variableInit()
+	{
+		waveState = 0;
+		spawnMaxVar = 0;
+		spawnVar = 1;
+		multiSpawnWaitTime = 3;
+		waveState = 0;
+
+		float dimMaxWaitTime = GameManager.Instance.Day * ( float )0.7;
+		if( dimMaxWaitTime <= 1.0f )
+		{
+			dimMaxWaitTime = 1.0f;
 		}
 
-		//if( multiSpawnWaitTime++ >= 3 )
-		//{
-		spawnVar = Random.Range( ( int )( GameManager.Instance.Day / ( float )0.2 ), ( int )spawnMaxVar + 1 );
-		Debug.Log( spawnMaxVar );
-		//Debug.Log( GameManager.Instance.TotalDistance );
-			//multiSpawnWaitTime = 3;
-			//multiSpawnWaitTime++;
-			//if( spawnVar >= 2 )
-			//{
-			//	multiSpawnWaitTime = 3;
-			//}
-		//}
+		dayMaxWaitTime = 3.0f - ( GameManager.Instance.Day * ( float )0.7 ) ;
+		waitTime = 3.0f;
 	}
 
 	//時間、スポーンする敵、スポーンするサイドを変える初期処理のようなもの
 	void EnemyInit()
 	{
-		waitTime = maxWaitTime - ( GameManager.Instance.Day * ( float )0.2 );
+		waitTime = dayMaxWaitTime - ( GameManager.Instance.Day * ( float )0.2 );
 		randomTime = Random.Range( 0f, 2f );
 		waitTime += randomTime;
-		Debug.Log( waitTime );
+		//Debug.Log( waitTime );
+		//Debug.Log( maxWaitTime );
 		enemyNumber = Random.Range( 0, enemyTypeVar );
 		spawnSide = Random.Range( -1, 2 );
 	}
 
 	void spawnStart()
 	{
-		spawnMaxVar = GameManager.Instance.Day * ( float )0.4;
+		spawnMaxVar = 2 + GameManager.Instance.Day * ( float )0.4;
 		if( spawnMaxVar > 3.0f )
 		{
 			spawnMaxVar = 3.0f;
