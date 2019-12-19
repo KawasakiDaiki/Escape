@@ -21,15 +21,17 @@ public class FloorManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.Instance.State == GameState.InGame)
-        foreach (Transform item in transform)
+        if (GameManager.Instance.State == GameState.InGame)
         {
-            item.localPosition += Vector3.forward * speed * Time.deltaTime;
-            if (item.localPosition.z > 240)
+            foreach (Transform item in transform)
             {
-                item.localPosition += Vector3.forward * _resetPosition;
+                item.localPosition += Vector3.forward * speed * Time.deltaTime;
+                if (item.localPosition.z > 240)
+                {
+                    item.localPosition += Vector3.forward * _resetPosition;
+                }
             }
+            GameManager.Instance.TotalDistance += speed * Time.deltaTime;
         }
-        GameManager.Instance.TotalDistance += speed * Time.deltaTime;
     }
 }

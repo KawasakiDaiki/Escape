@@ -20,13 +20,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     [SerializeField] Text scoreText;
     [SerializeField] GameState gameState;
+    [SerializeField] PlayerAnimationController playerAnimator;
     public float TotalDistance { get; set; }
 
-   [field:SerializeField] public GameState State { get; set; }
+    [field: SerializeField] public GameState State { get; set; }
 
     public int Day { get; set; }
 
-    public float PlayerSpeed{ get; set;}
+    public float PlayerSpeed { get; set; }
     float speed = 10;
 
     void Awake()
@@ -39,9 +40,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     }
     void Update()
     {
-        if (scoreText)
+        if (State == GameState.InGame)
         {
-            scoreText.text = (TotalDistance/10).ToString("0.0") + "m";
+            scoreText.text = (TotalDistance / 10).ToString("0.0") + "m";
         }
     }
 
@@ -53,9 +54,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void HelpOnClick()
     {
         State = GameState.InGame;
+        playerAnimator.PlayRun();
     }
     public void CheckPointOnClick()
     {
         State = GameState.InGame;
+        playerAnimator.StopRun();
     }
 }

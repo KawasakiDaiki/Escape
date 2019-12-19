@@ -3,15 +3,14 @@
  作成：川崎大樹
  */
 
-using System.Collections;
+using Player;
 using System.Collections.Generic;
 using UnityEngine;
-using Player;
 
 public class ItemManeger : MonoBehaviour
 {
     // パーティクルを格納
-    [SerializeField,Tooltip("0:salt/1:money")] GameObject[] Particles;
+    [SerializeField, Tooltip("0:salt/1:money")] GameObject[] Particles;
 
     // アイテムの種類
     public enum Types
@@ -23,7 +22,7 @@ public class ItemManeger : MonoBehaviour
         TypeNum,
     }
 
-    [SerializeField]GameObject ItemPrefav;
+    [SerializeField] GameObject ItemPrefav;
     List<GameObject> itemPool = new List<GameObject>();
     int poolCount = 10;
 
@@ -34,9 +33,9 @@ public class ItemManeger : MonoBehaviour
     void Start()
     {
         //アイテムをpool
-        for(int i = 0; i < poolCount; i++)
+        for (int i = 0; i < poolCount; i++)
         {
-            itemPool.Add(Instantiate(ItemPrefav,new Vector3(100,100,100),Quaternion.identity));
+            itemPool.Add(Instantiate(ItemPrefav, new Vector3(100, 100, 100), Quaternion.identity));
             itemPool[i].SetActive(false);
             itemPool[i].transform.SetParent(transform);
         }
@@ -73,7 +72,7 @@ public class ItemManeger : MonoBehaviour
     //使えるものがある時
     public void ItemCreator(int type, GameObject itemObj)
     {
-        Vector3 footPos =player.transform.parent.transform.position;
+        Vector3 footPos = Vector3.zero;
         footPos.x += player.GetComponent<PlayerHorizontalMover>().CurrentLine;
 
         //プレイヤー座標に生成
@@ -82,7 +81,7 @@ public class ItemManeger : MonoBehaviour
 
         footPos.y = 0;
         //パーティクル生成
-        Instantiate(Particles[type], footPos, Particles[type].transform.rotation);
+        Instantiate(Particles[type], footPos + Vector3.right * 0.3f, Particles[type].transform.rotation);
 
         //type設定
         itemObj.GetComponent<ItemType>().type = (Types)type;

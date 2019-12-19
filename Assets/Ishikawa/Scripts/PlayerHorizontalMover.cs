@@ -19,7 +19,10 @@ namespace Player
 
         void Update()
         {
-            Move();
+            if (GameManager.Instance.State == GameState.InGame)
+            {
+                Move();
+            }
         }
         void Move()
         {
