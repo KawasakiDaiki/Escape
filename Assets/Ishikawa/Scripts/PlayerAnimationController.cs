@@ -42,5 +42,6 @@ public class PlayerAnimationController : MonoBehaviour
     public void Scatter(int type)
     {
         itemManager.OnClick(type);
+        AudioManager.Instance.PlayScatterSE(type);
     }
 }

@@ -5,11 +5,8 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     [SerializeField] AudioSource BGMSource;
     [SerializeField] AudioSource SESource;
 
-    [SerializeField] AudioClip[] SEClips;
+    [SerializeField, Tooltip("撒くSEのクリップ")] AudioClip[] scatterClips;
 
-    enum SEClipName
-    {
-    }
     void Awake()
     {
         CheckInstance();
@@ -20,8 +17,12 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     {
     }
 
-    public void PlaySE()
+    /// <summary>
+    /// 撒く再生する。0:塩, 1:お金
+    /// </summary>
+    public void PlayScatterSE(int type)
     {
-        SESource.PlayOneShot(SESource.clip);
+        SESource.PlayOneShot(scatterClips[type]);
     }
+
 }

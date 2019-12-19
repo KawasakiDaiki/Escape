@@ -1417,7 +1417,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 85f36420235d733499b60b0a23313ba0, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -1516,7 +1516,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGMSource: {fileID: 753469550}
   SESource: {fileID: 753469553}
-  SEClips: []
+  scatterClips:
+  - {fileID: 8300000, guid: 909b143a89203114bacea171f8769662, type: 3}
+  - {fileID: 8300000, guid: 5c08c39ad925f804daca88f277bf573a, type: 3}
 --- !u!4 &753469552
 Transform:
   m_ObjectHideFlags: 0
@@ -3725,10 +3727,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 101.60934
       objectReference: {fileID: 0}
-    - target: {fileID: 2042358459, guid: 4f8b83eaa24162840a2a754d5d5ec8b3, type: 3}
-      propertyPath: itemManager
-      value: 
-      objectReference: {fileID: 897987426}
     - target: {fileID: 3029709516264683447, guid: 4f8b83eaa24162840a2a754d5d5ec8b3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3789,5 +3787,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -4.5696445
       objectReference: {fileID: 0}
+    - target: {fileID: 2042358459, guid: 4f8b83eaa24162840a2a754d5d5ec8b3, type: 3}
+      propertyPath: itemManager
+      value: 
+      objectReference: {fileID: 897987426}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f8b83eaa24162840a2a754d5d5ec8b3, type: 3}
