@@ -1,11 +1,19 @@
-﻿using System.Collections;
+﻿/*
+ 2019/12/17
+ 作成：川崎大樹
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Player;
 
 public class ItemManeger : MonoBehaviour
 {
-    //アイテムの種類
+    // パーティクルを格納
+    [SerializeField,Tooltip("0:money/1:salt")] GameObject[] Particles;
+
+    // アイテムの種類
     public enum Types
     {
         money,
@@ -13,72 +21,75 @@ public class ItemManeger : MonoBehaviour
 
         TypeNum,
     }
-    //デバッグ用に色変更
-    public static Color[] colors =
-    {
-        Color.yellow,
-        Color.white,
-    };
 
-    [SerializeField]GameObject itemPrefav;
-    List<GameObject> ItemPool = new List<GameObject>();
+    [SerializeField]GameObject ItemPrefav;
+    List<GameObject> itemPool = new List<GameObject>();
     int poolCount = 10;
 
-    private GameObject player;
+    [SerializeField] GameObject player;
 
-    // Start is called before the first frame update
+
+
     void Start()
     {
-        player = GameObject.Find("Player");
-
         //アイテムをpool
         for(int i = 0; i < poolCount; i++)
         {
-            ItemPool.Add(Instantiate(itemPrefav,new Vector3(100,100,100),Quaternion.identity));
-            ItemPool[i].SetActive(false);
-            ItemPool[i].transform.SetParent(transform);
+            itemPool.Add(Instantiate(ItemPrefav,new Vector3(100,100,100),Quaternion.identity));
+            itemPool[i].SetActive(false);
+            itemPool[i].transform.SetParent(transform);
         }
     }
 
 
 
-    //ボタン入力されたらアイテムをインスタンス、ボタンごとにタイプ分け
+    //ボタン入力
     public void OnClick(int type)
     {
         //poolから使えるのがあれば使用
         int i = 0;
         for (; i < poolCount; i++)
         {
-            Debug.Log("a");
-
-            if (!ItemPool[i].activeSelf)
+            if (!itemPool[i].activeSelf)
             {
-                StartCoroutine(ItemCreator(type, ItemPool[i]));
+                ItemCreator(type, itemPool[i]);
                 return;
             }
         }
-        //なければ生成してpoolに追加
-        ItemPool.Add(Instantiate(itemPrefav,new Vector3(100,100,100),Quaternion.identity));
-        poolCount = ItemPool.Count;
-        ItemPool[poolCount-1].transform.SetParent(transform);
-        StartCoroutine(ItemCreator(type, ItemPool[poolCount - 1]));
-
+        OverPool(type);
     }
 
-    public IEnumerator ItemCreator(int type, GameObject obj)
+    //使えるものがないとき
+    void OverPool(int type)
     {
-        while (true)
-        {
-            if (!player.GetComponent<PlayerHorizontalMover>().IsMoving)break;
-            yield return null;
-        }
-        //プレイヤーの足元に生成
-        Vector3 footPos =player.transform.position - transform.up * 0.5f;
-        obj.transform.position = footPos;
-        obj.SetActive(true);
+        //生成してpoolに追加
+        itemPool.Add(Instantiate(ItemPrefav, new Vector3(100, 100, 100), Quaternion.identity));
+        poolCount = itemPool.Count;
+        itemPool[poolCount - 1].transform.SetParent(transform);
+        ItemCreator(type, itemPool[poolCount - 1]);
+    }
 
+    //使えるものがある時
+    public void ItemCreator(int type, GameObject itemObj)
+    {
+        Vector3 footPos =player.transform.parent.transform.position;
+        footPos.x -= player.GetComponent<PlayerHorizontalMover>().CurrentLine;
 
-        obj.GetComponent<ItemType>().type = (Types)type;
-        obj.GetComponent<MeshRenderer>().material.color = colors[type];
+        //プレイヤー座標に生成
+        itemObj.transform.position = footPos;
+        itemObj.SetActive(true);
+
+        footPos.y = 0;
+        //パーティクル生成
+        Instantiate(Particles[type], footPos, Particles[type].transform.rotation);
+
+        //type設定
+        itemObj.GetComponent<ItemType>().type = (Types)type;
+    }
+
+    public static void HitEnemy(GameObject seed)
+    {
+        seed.SetActive(false);
+        seed.transform.position = new Vector3(100, 100, 100);
     }
 }

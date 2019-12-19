@@ -5,6 +5,14 @@ using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public enum EnemyState
+    {
+        life,
+        death,
+        stop,
+    }
+
+
 	//敵のオブジェクト
 	[SerializeField] GameObject[] enemy;
 
@@ -113,6 +121,9 @@ public class EnemySpawner : MonoBehaviour
 			GameObject instantiateEnemy = Instantiate( enemy[ enemyNumber ],
 														new Vector3( spawnX, spawnY, spawnZ ),
 														player.transform.rotation );
+
+            instantiateEnemy.GetComponent<EnemyController>().type = (ItemManeger.Types)enemyNumber;
+
 			EnemyInit();
 		}
 
@@ -136,8 +147,7 @@ public class EnemySpawner : MonoBehaviour
 		waitTime = maxWaitTime - ( GameManager.Instance.Day * ( float )0.2 );
 		randomTime = Random.Range( 0f, 2f );
 		waitTime += randomTime;
-		Debug.Log( waitTime );
-		enemyNumber = Random.Range( 0, enemyTypeVar );
+		enemyNumber = Random.Range( 0, enemyTypeVar);
 		spawnSide = Random.Range( -1, 2 );
 	}
 
@@ -148,7 +158,7 @@ public class EnemySpawner : MonoBehaviour
 		{
 			spawnMaxVar = 3.0f;
 		}
-		Debug.Log( spawnMaxVar );
+		//Debug.Log( spawnMaxVar );
 		waveState = 1;
 	}
 }
