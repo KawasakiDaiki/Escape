@@ -26,6 +26,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public int Day { get; set; }
 
+    public float PlayerSpeed{ get; set;}
+    float speed = 10;
+
+    void Awake()
+    {
+        PlayerSpeed = speed;
+    }
     void Start()
     {
         State = gameState;
@@ -34,7 +41,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         if (scoreText)
         {
-            scoreText.text = TotalDistance.ToString("0") + "m";
+            scoreText.text = (TotalDistance/10).ToString("0.0") + "m";
         }
     }
 
