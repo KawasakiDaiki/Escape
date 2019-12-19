@@ -18,6 +18,7 @@ public class ItemManeger : MonoBehaviour
     {
         salt,
         money,
+        boss,
 
         TypeNum,
     }
