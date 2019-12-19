@@ -14,7 +14,7 @@ public class EnemyController : MoveBase
     public ItemManeger.Types type{get; set;}
     public /*EnemySpawner.*/EnemyState state;
 
-	float speed = 11.0f;
+	float speed = 10.5f;
 	Rigidbody _rg;
 	bool deathFlg = false;
 

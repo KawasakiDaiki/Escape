@@ -14,25 +14,27 @@ public class EnemySpawner : MonoBehaviour
 	//最高待機時間を設定する
 	[SerializeField] float maxWaitTime = 3.0f;
 	//基本となる待機時間の変数。日によって変わります。
-	private float dayMaxWaitTime = 3.0f;
+	float dayMaxWaitTime = 3.0f;
+	//
+	float dayMinWaitTime = 1.0f;
 	//実際に使用する(減算する)変数
-	private float waitTime = 3.0f;
+	float waitTime = 3.0f;
 	//ランダムな時間を代入する変数
-	private float randomTime = 0f;
+	float randomTime = 0f;
 	//敵のスポーン頻度を調整する( maxWaitTime - spawnFreq )
 	float spawnFreq = 0;
 
-	private float dimTime = 0.01f;
+	float dimTime = 0.01f;
 
 	//ランダムで敵の種類を決める変数
-	private int enemyNumber = 0;
+	int enemyNumber = 0;
 	//スポーンする位置を変える変数
-	private int spawnSide = 0;
+	int spawnSide = 0;
 	//敵の種類を制御する変数
 	[SerializeField] int enemyTypeVar = 0;
 
 	//敵が生成される場所(プレイヤーとの場所の比較)
-	[SerializeField] float distance = 10.0f;
+	[SerializeField] float distance;
 
 	//敵最大スポーン量
 	float spawnMaxVar = 0;
@@ -48,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
 	
 	void Start()
 	{
-		variableInit();
+		VariableInit();
 	}
 
 	void Update()
@@ -62,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
 		if( GameManager.Instance.TotalDistance >= 1000 )
 		{
 			GameManager.Instance.State = GameState.CheckPoint;
-			//variableInit();
+			VariableInit();
 		}
 	}
 
@@ -75,13 +77,13 @@ public class EnemySpawner : MonoBehaviour
 	{
 		waveSetting();
 
-		if( waveState != 0 )
+		if( !( GameManager.Instance.State == GameState.InGame ) && waveState != 0 )
 		{
 			return;
 		}
 
 		waveState++;
-		GameManager.Instance.Day += 4;
+		GameManager.Instance.Day += 1;
 		spawnStart();
 		Debug.Log( "true" );
 		EnemyInit();
@@ -122,11 +124,12 @@ public class EnemySpawner : MonoBehaviour
 			float spawnZ = distance;
 			GameObject instantiateEnemy = Instantiate( enemy[ enemyNumber ],
 														new Vector3( spawnX, spawnY, spawnZ ),
-														player.transform.rotation );
+														Quaternion.Euler( 0, -180, 0 ) );
 			instantiateEnemy.GetComponent<EnemyController>().type = (ItemManeger.Types)enemyNumber;
+			Debug.Log( instantiateEnemy.name );
 			EnemyInit();
 
-			yield return new WaitForSeconds( 0.1f );
+			yield return new WaitForSeconds( 0.5f );
 
 		}
 		
@@ -135,7 +138,7 @@ public class EnemySpawner : MonoBehaviour
 		yield break;
 	}
 
-	void variableInit()
+	void VariableInit()
 	{
 		waveState = 0;
 		spawnMaxVar = 0;
@@ -167,7 +170,7 @@ public class EnemySpawner : MonoBehaviour
 
 	void spawnStart()
 	{
-		spawnMaxVar = 2 + GameManager.Instance.Day * ( float )0.4;
+		spawnMaxVar = 1 + GameManager.Instance.Day * ( float )0.4;
 		if( spawnMaxVar > 3.0f )
 		{
 			spawnMaxVar = 3.0f;
