@@ -4,10 +4,16 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: ambientLight1
+    100004: pCube7
     400000: //RootNode
+    400002: ambientLight1
+    400004: pCube7
     2100000: TX_RoadTemplate
     2300000: //RootNode
+    2300002: pCube7
     3300000: //RootNode
+    3300002: pCube7
     4300000: pCube7
   externalObjects: {}
   materials:
