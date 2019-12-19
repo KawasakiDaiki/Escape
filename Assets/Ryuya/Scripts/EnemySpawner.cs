@@ -143,8 +143,13 @@ public class EnemySpawner : MonoBehaviour
 			yield return new WaitForSeconds( 0.5f );
 
 		}
-		
+
+		if( !bigWave )
+		{
+
+		}
 		spawnVar = Random.Range( ( int )( GameManager.Instance.Day * ( float )0.2 ), ( int )spawnMaxVar + 1 );
+		Debug.Log( spawnVar );
 
 		yield break;
 	}
@@ -188,5 +193,6 @@ public class EnemySpawner : MonoBehaviour
 		}
 		//Debug.Log( spawnMaxVar );
 		waveState = 1;
+		bigWave = false;
 	}
 }

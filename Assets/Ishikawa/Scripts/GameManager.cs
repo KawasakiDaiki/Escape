@@ -61,4 +61,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         State = GameState.InGame;
         playerAnimator.StopRun();
     }
+	public void CheckPoint()
+    {
+        State = GameState.CheckPoint;
+    }
 }
