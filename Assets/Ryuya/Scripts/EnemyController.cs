@@ -156,6 +156,7 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            GameManager.Instance.Death = true;
             deathFlg = true;
             Debug.Log(deathFlg);
         }

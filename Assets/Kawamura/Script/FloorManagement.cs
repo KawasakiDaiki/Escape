@@ -32,6 +32,7 @@ public class FloorManagement : MonoBehaviour
                 }
             }
             GameManager.Instance.TotalDistance += speed * Time.deltaTime;
+            GameManager.Instance.StageClear();
         }
     }
 }

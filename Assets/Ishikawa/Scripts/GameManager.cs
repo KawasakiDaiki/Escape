@@ -19,7 +19,7 @@ public enum GameState
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     [SerializeField] Text scoreText;
-	[SerializeField] Text scoreLabel;
+    [SerializeField] Text scoreLabel;
     [SerializeField] GameObject _nextStageButton;
     [SerializeField] GameState gameState;
     [SerializeField] PlayerAnimationController playerAnimator;
@@ -27,11 +27,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     [field: SerializeField] public GameState State { get; set; }
 
-	public bool Death{ get; set;}
+    public bool Death { get; set; }
 
-	public float[] _stageLength = {100,150,200,250,300,350,400};
+    public float[] _stageLength = { 100, 150, 200, 250, 300, 350, 400 };
 
-	public int Day { get; set; } = 0;
+    public int Day { get; set; } = 0;
 
     public float PlayerSpeed { get; set; }
     float speed = 10;
@@ -49,9 +49,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         if (State == GameState.InGame)
         {
-
-			scoreLabel.text = "お家まで" + ( _stageLength[ Day ] - ( TotalDistance / 10 ) ).ToString( "0.0" ) + "m";
-			scoreText.text = "お家まで" + (_stageLength[Day] - (TotalDistance / 10)).ToString("0.0") + "m";
+            RenderSettings.fog = true;
+            scoreLabel.text = "お家まで" + (_stageLength[Day] - (TotalDistance / 10)).ToString("0.0") + "m";
+            scoreText.text = "お家まで" + (_stageLength[Day] - (TotalDistance / 10)).ToString("0.0") + "m";
+            if (Death)
+            {
+                GameOver();
+            }
         }
 
     }
@@ -66,34 +70,38 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         State = GameState.InGame;
         playerAnimator.PlayRun();
     }
-	public void StageClear()
-	{
-		if( TotalDistance /10 >= _stageLength[ Day ] )
-		{
-			State = GameState.CheckPoint;
-		}
-	}
+    public void StageClear()
+    {
+        if (TotalDistance / 10 >= _stageLength[Day])
+        {
+            State = GameState.CheckPoint;
+            TotalDistance = 0;
+            RenderSettings.fog = false;
+            playerAnimator.StopRun();
+        }
+    }
     public void CheckPointOnClick()
     {
         _nextStageButton.SetActive(false);
         State = GameState.InGame;
-        playerAnimator.StopRun();
-		TotalDistance = 0;
-		Day++;
-		if( Day >= 7 )
-		{
-			Day = 0;
-		}
+        playerAnimator.PlayRun();
+        TotalDistance = 0;
+        Day++;
+        if (Day >= 7)
+        {
+            Day = 0;
+        }
     }
-	public void CheckPoint()
+    //public void CheckPoint()
+    //   {
+    //       State = GameState.CheckPoint;
+    //  TotalDistance = 0;
+
+    //}
+
+    public void GameOver()
     {
-        State = GameState.CheckPoint;
-		TotalDistance = 0;
-
-	}
-
-	public void GameOver()
-	{
-		State = GameState.GameOver;
-	}
+        State = GameState.GameOver;
+        playerAnimator.StopRun();
+    }
 }
