@@ -52,6 +52,7 @@ public class EnemySpawner : MonoBehaviour
 	int waveState = 0;
 	//最大のウェーブ
 	int bigWave = 0;
+	int init = 0;
 
 	
 	void Start()
@@ -154,6 +155,7 @@ public class EnemySpawner : MonoBehaviour
 		spawnVar = 1;
 		multiSpawnWaitTime = 3;
 		waveState = 0;
+		init = 0;
 
 		float dimMaxWaitTime = GameManager.Instance.Day * ( float )0.7;
 		if( dimMaxWaitTime <= 1.0f )
@@ -162,13 +164,17 @@ public class EnemySpawner : MonoBehaviour
 		}
 
 		dayMaxWaitTime = 3.0f - ( GameManager.Instance.Day * ( float )0.7 ) ;
-		waitTime = 3.0f;
+		waitTime = 0.01f;
 	}
 
 	//時間、スポーンする敵、スポーンするサイドを変える初期処理のようなもの
 	void EnemyInit()
 	{
-		waitTime = dayMaxWaitTime - ( GameManager.Instance.Day * ( float )0.2 );
+		if( init >= 1 )
+		{
+			waitTime = dayMaxWaitTime - ( GameManager.Instance.Day * ( float )0.2 );
+			init++;
+		}
 		randomTime = Random.Range( 0f, 2f );
 		waitTime += randomTime;
 		//Debug.Log( waitTime );
