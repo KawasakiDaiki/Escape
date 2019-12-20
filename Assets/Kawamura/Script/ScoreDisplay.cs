@@ -37,7 +37,11 @@ public class ScoreDisplay : MonoBehaviour
         else if(_score1 >= _score0)
         {
             _scoreLabel.text = ((int)_score0).ToString() + "m";
-            _titleButton.SetActive(true);
+			if( _titleButton )
+			{
+				_titleButton.SetActive( true );
+			}
+
         }
     }
 }

@@ -16,6 +16,8 @@ public class CanvasManager : MonoBehaviour
     GameObject _checkPointPanel;
     [SerializeField]
     GameObject _uiCamera;
+	[SerializeField]
+	GameObject _canvas;
 
 
     // Start is called before the first frame update
@@ -37,7 +39,8 @@ public class CanvasManager : MonoBehaviour
                 _checkPointPanel.SetActive(false);
                 Debug.Log(_checkPointPanel);
                 _uiCamera.SetActive(true);
-                break;
+				_canvas.SetActive(true);
+				break;
 
             case GameState.Help:
                 _titlePanel.SetActive(false);
@@ -46,7 +49,8 @@ public class CanvasManager : MonoBehaviour
                 _inGamePanel.SetActive(false);
                 _checkPointPanel.SetActive(false);
                 _uiCamera.SetActive(true);
-                break;
+				_canvas.SetActive( true );
+				break;
 
             case GameState.InGame:
                 _titlePanel.SetActive(false);
@@ -55,7 +59,9 @@ public class CanvasManager : MonoBehaviour
                 _inGamePanel.SetActive(true);
                 _checkPointPanel.SetActive(false);
                 _uiCamera.SetActive(false);
-                break;
+				_canvas.SetActive( true );
+
+				break;
 
             case GameState.CheckPoint:
                 _titlePanel.SetActive(false);
@@ -64,7 +70,8 @@ public class CanvasManager : MonoBehaviour
                 _inGamePanel.SetActive(false);
                 _checkPointPanel.SetActive(true);
                 _uiCamera.SetActive(true);
-                break;
+				_canvas.SetActive(false);
+				break;
                 
             case GameState.GameOver:
                 _titlePanel.SetActive(false);
@@ -73,7 +80,8 @@ public class CanvasManager : MonoBehaviour
                 _inGamePanel.SetActive(false);
                 _checkPointPanel.SetActive(false);
                 _uiCamera.SetActive(true);
-                break;
+				_canvas.SetActive( false );
+				break;
         }
     }
 }

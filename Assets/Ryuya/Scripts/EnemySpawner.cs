@@ -92,7 +92,7 @@ public class EnemySpawner : MonoBehaviour
 		}
 
 		waveState++;
-		GameManager.Instance.Day += 1;
+		//GameManager.Instance.Day += 1;
 		spawnStart();
 		EnemyInit();
 	}

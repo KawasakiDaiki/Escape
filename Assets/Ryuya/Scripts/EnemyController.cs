@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     bool dashFlg = false;
     float dashTime = 0.5f;
 
-	bool deathFlg = false;
+	public bool deathFlg = false;
 
     void Start()
     {
@@ -142,10 +142,11 @@ public class EnemyController : MonoBehaviour
 	//ゲームオーバー処理
 	void OnTriggerStay( Collider other )
 	{
+		Debug.Log( GameManager.Instance.State );
 		if( other.gameObject.tag == "Player" )
 		{
-			deathFlg = true;
-			Debug.Log( deathFlg );
+			GameManager.Instance.GameOver();
+			Debug.Log( GameManager.Instance.State );
 		}
 	}
     
