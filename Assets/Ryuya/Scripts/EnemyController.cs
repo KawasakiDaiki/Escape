@@ -11,21 +11,27 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
 
-    public ItemManeger.Types type{get; set;}
+    public ItemManeger.Types type { get; set; }
     public EnemySpawner.EnemyState state;
 
-	float speed = 13.0f;
+    float speed = 13.0f;
 
     float dashSpeed = 15.0f;
     bool dashFlg = false;
     float dashTime = 0.5f;
 
-	public bool deathFlg = false;
+    bool deathFlg = false;
+
+    [SerializeField] int audioType;
+
+    bool once;
 
     void Start()
     {
         speed = GameManager.Instance.PlayerSpeed * 0.5f;
-        dashSpeed= GameManager.Instance.PlayerSpeed * 1.0f;
+        dashSpeed = GameManager.Instance.PlayerSpeed * 1.0f;
+        once = false;
+        AudioManager.Instance.PlayBornSE(audioType);
     }
 
     void Update()
@@ -46,14 +52,14 @@ public class EnemyController : MonoBehaviour
             //死んだら地面と同じベクトルに
             case EnemySpawner.EnemyState.death:
                 DeathMove();
-				StartCoroutine( DesEvent() );
-				break;
+                StartCoroutine(DesEvent());
+                break;
 
 
             //停止
             case EnemySpawner.EnemyState.stop:
-				//DeathAni();
-				//StartCoroutine( DesEvent() );
+                //DeathAni();
+                //StartCoroutine( DesEvent() );
                 break;
         }
     }
@@ -92,14 +98,19 @@ public class EnemyController : MonoBehaviour
     /// </remarks>
     public void DeathAni()
     {
-        GetComponent<Animator>().SetTrigger( "DeathTrigger" );
-		Debug.Log( "true" );
+        if (!once)
+        {
+            once = true;
+            GetComponent<Animator>().SetTrigger("DeathTrigger");
+            AudioManager.Instance.PlayDisappearSE(audioType);
+            Debug.Log("true");
+        }
     }
 
     //疑似アニメーション後処理
     public IEnumerator DesEvent()
     {
-		DeathAni();
+        DeathAni();
         yield return new WaitForSeconds(1.5f);
 
         CallDesEffect();
@@ -108,9 +119,9 @@ public class EnemyController : MonoBehaviour
     {
         dashFlg = true;
         //GetComponent<Collider>().enabled = false;
-        yield return new WaitForSeconds(dashTime*2/3);
+        yield return new WaitForSeconds(dashTime * 2 / 3);
         //GetComponent<Collider>().enabled = true;
-        yield return new WaitForSeconds(dashTime*1/3);
+        yield return new WaitForSeconds(dashTime * 1 / 3);
         dashFlg = false;
     }
 
@@ -119,10 +130,10 @@ public class EnemyController : MonoBehaviour
     {
         if (col.gameObject.tag == "Seed")
         {
-			if (col.gameObject.GetComponent<ItemType>().type == type)
+            if (col.gameObject.GetComponent<ItemType>().type == type)
             {
                 state = EnemySpawner.EnemyState.death;
-				//StartCoroutine(DesEvent());
+                //StartCoroutine(DesEvent());
                 ItemManeger.ReturnPool(col.gameObject);
             }
             else
@@ -132,28 +143,28 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-	//敵デストロイ
-	public void DestroyEnemy() {
+    //敵デストロイ
+    public void DestroyEnemy()
+    {
 
-		CallDesEffect();
+        CallDesEffect();
 
-	}
+    }
 
-	//ゲームオーバー処理
-	void OnTriggerStay( Collider other )
-	{
-		Debug.Log( GameManager.Instance.State );
-		if( other.gameObject.tag == "Player" )
-		{
-			GameManager.Instance.GameOver();
-			Debug.Log( GameManager.Instance.State );
-		}
-	}
-    
+    //ゲームオーバー処理
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            deathFlg = true;
+            Debug.Log(deathFlg);
+        }
+    }
+
     //アニメーション後に破壊する用
     void CallDesEffect()
     {
         Destroy(this.gameObject);
     }
-    
+
 }
