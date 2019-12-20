@@ -49,6 +49,6 @@ MonoBehaviour:
   - {fileID: 5750529726367776666, guid: 4b9b47fe4612f2642b48ce352c0f2bcd, type: 3}
   - {fileID: 2749286338755229076, guid: cea4813c9ba21344da0a3fa05e33f534, type: 3}
   player: {fileID: 0}
-  maxWaitTime: 3
-  enemyTypeVar: 2
+  maxWaitTime: 1
+  enemyTypeVar: 4
   distance: 70
