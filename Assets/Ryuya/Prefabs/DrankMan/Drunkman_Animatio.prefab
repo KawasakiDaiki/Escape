@@ -483,6 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  audioType: 1
 --- !u!1 &5750529726367776668
 GameObject:
   m_ObjectHideFlags: 0

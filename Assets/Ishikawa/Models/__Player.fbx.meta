@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 75b7aca811234204a96ea87cb6f21e14
+guid: 9a3799582d2d643499277ceb49d26591
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -61,11 +61,10 @@ ModelImporter:
     400054: spine2
     2100000: TX_PlayerCharacter
     4300000: pCylinder7
-    7400000: Run
-    7400002: Scatter
-    7400004: Right
-    7400006: Left
-    7400008: Idle
+    7400000: Idle
+    7400002: Run
+    7400004: Scatter
+    7400006: StartRunning
     9500000: //RootNode
     13700000: pCylinder7
   externalObjects: {}
@@ -97,8 +96,36 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
+      name: Idle
+      takeName: PlayerCharacter_Animatio
+      firstFrame: 0
+      lastFrame: 0
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: Run
-      takeName: PlayerCharacter_Animatio3
+      takeName: PlayerCharacter_Animatio
       firstFrame: 5
       lastFrame: 35
       wrapMode: 0
@@ -123,39 +150,11 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 5
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Scatter
-      takeName: PlayerCharacter_Animatio3
+      takeName: PlayerCharacter_Animatio
       firstFrame: 35
-      lastFrame: 65
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 5
-    - serializedVersion: 16
-      name: Right
-      takeName: PlayerCharacter_Animatio3
-      firstFrame: 65
       lastFrame: 95
       wrapMode: 0
       orientationOffsetY: 0
@@ -176,15 +175,71 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ambientLight1
+        weight: 1
+      - path: directionalLight1
+        weight: 1
+      - path: pCylinder7
+        weight: 1
+      - path: spine1
+        weight: 1
+      - path: spine1/Foot1_L
+        weight: 0
+      - path: spine1/Foot1_L/Foot2_L
+        weight: 0
+      - path: spine1/Foot1_L/Foot2_L/Foot3_L
+        weight: 0
+      - path: spine1/Foot1_L/Foot2_L/Foot3_L/Foot4_L
+        weight: 0
+      - path: spine1/Foot1_L/Foot2_L/Foot3_L/Foot4_L/Foot5_L
+        weight: 0
+      - path: spine1/Foot1_R
+        weight: 0
+      - path: spine1/Foot1_R/Foot2_R
+        weight: 0
+      - path: spine1/Foot1_R/Foot2_R/Foot3_R
+        weight: 0
+      - path: spine1/Foot1_R/Foot2_R/Foot3_R/Foot4_R
+        weight: 0
+      - path: spine1/Foot1_R/Foot2_R/Foot3_R/Foot4_R/Foot5_R
+        weight: 0
+      - path: spine1/spine2
+        weight: 1
+      - path: spine1/spine2/Arm1_L
+        weight: 1
+      - path: spine1/spine2/Arm1_L/Arm2_L
+        weight: 1
+      - path: spine1/spine2/Arm1_L/Arm2_L/Hand1_L
+        weight: 1
+      - path: spine1/spine2/Arm1_L/Arm2_L/Hand1_L/Hand2_L
+        weight: 1
+      - path: spine1/spine2/Arm1_L/Arm2_L/Hand1_L/Hand3_L
+        weight: 1
+      - path: spine1/spine2/Arm1_R
+        weight: 1
+      - path: spine1/spine2/Arm1_R/Arm2_R
+        weight: 1
+      - path: spine1/spine2/Arm1_R/Arm2_R/Hand1_R
+        weight: 1
+      - path: spine1/spine2/Arm1_R/Arm2_R/Hand1_R/Hand2_R
+        weight: 1
+      - path: spine1/spine2/Arm1_R/Arm2_R/Hand1_R/Hand3_R
+        weight: 1
+      - path: spine1/spine2/Head1
+        weight: 1
+      - path: spine1/spine2/Head1/Head2
+        weight: 1
+      maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 5
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Left
-      takeName: PlayerCharacter_Animatio3
-      firstFrame: 95
-      lastFrame: 125
+      name: StartRunning
+      takeName: PlayerCharacter_Animatio
+      firstFrame: 0
+      lastFrame: 5
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -207,35 +262,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 5
-    - serializedVersion: 16
-      name: Idle
-      takeName: PlayerCharacter_Animatio3
-      firstFrame: 5
-      lastFrame: 5
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 5
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

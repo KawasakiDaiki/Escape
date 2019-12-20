@@ -377,6 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  audioType: 2
 --- !u!65 &2749286338755261240
 BoxCollider:
   m_ObjectHideFlags: 0

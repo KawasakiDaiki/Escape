@@ -36,12 +36,20 @@ public class PlayerAnimationController : MonoBehaviour
     /// </summary>
     public void PlayScatter(int type)
     {
-        animator.SetTrigger(ScatterKey + type.ToString());
+        if (!IsScattering)
+        {
+            IsScattering = true;
+            animator.SetTrigger(ScatterKey + type.ToString());
+        }
     }
 
+    /// <summary>
+    /// 実際に撒く
+    /// </summary>
     public void Scatter(int type)
     {
         itemManager.OnClick(type);
         AudioManager.Instance.PlayScatterSE(type);
+        IsScattering = false;
     }
 }
