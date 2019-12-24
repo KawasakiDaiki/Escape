@@ -10,7 +10,6 @@ using UnityEngine.SceneManagement;
 
 public class CameraManager : SingletonMonoBehaviour<CameraManager>
 {
-    [SerializeField] private Object MainSecne; 
     [SerializeField] private GameObject PlayerObject;
     [SerializeField,Range(0.01f,1.0f)] private float RecastTime=0.1f;
     List<Vector3> playerFootprint = new List<Vector3>();

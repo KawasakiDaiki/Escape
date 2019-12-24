@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ 2019/12/18
+ 作成：川崎大樹
+ */
+
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemType : MonoBehaviour
@@ -8,7 +14,7 @@ public class ItemType : MonoBehaviour
 
 
     float speedPreset = 0;
-    float lifeLimit = 2f;//死ぬまで
+    float lifeLimit = 2.0f;//死ぬまで
 
 
     // Update is called once per frame
@@ -21,10 +27,11 @@ public class ItemType : MonoBehaviour
     //自身の移動
     void Move()
     {
-        transform.position += new Vector3(0, 0, (GameManager.Instance.PlayerSpeed + speedPreset) * Time.deltaTime);
+        transform.position += new Vector3(0, 0, (GameManager.Instance.PlayerSpeed+speedPreset) * Time.deltaTime);
     }
 
-    public void StartCol()
+    //active時に
+    void OnEnable()
     {
         StartCoroutine(LifeCount());
     }
