@@ -28,5 +28,9 @@ public class CallEnemyDestroy : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+    void clamp()
+    {
+        float a = Mathf.Max(-100, 0);
 
+    }
 }

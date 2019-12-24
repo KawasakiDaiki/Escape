@@ -9,22 +9,22 @@ using UnityEngine;
 
 public class ItemManeger : MonoBehaviour
 {
-    // パーティクルを格納
-    [SerializeField, Tooltip("0:salt/1:money")] GameObject[] Particles;
-
     // アイテムの種類
     public enum Types
     {
-        salt,
-        money,
-        boss,
+        salt,//塩
+        money,//お金
 
-        TypeNum,
+        TypeNum,//アイテムの種類
     }
 
+    // パーティクルを格納
+    [SerializeField, Tooltip("0:salt/1:money")] GameObject[] Particles;
+
     [SerializeField] GameObject ItemPrefav;
+
+    //アイテムの格納リストと個数
     List<GameObject> itemPool = new List<GameObject>();
-    int poolCount = 10;
 
     [SerializeField] GameObject player;
 
@@ -33,7 +33,7 @@ public class ItemManeger : MonoBehaviour
     void Start()
     {
         //アイテムをpool
-        for (int i = 0; i < poolCount; i++)
+        for (int i = 0; i < 10; i++)
         {
             itemPool.Add(Instantiate(ItemPrefav, new Vector3(100, 100, 100), Quaternion.identity));
             itemPool[i].SetActive(false);
@@ -46,27 +46,29 @@ public class ItemManeger : MonoBehaviour
     //ボタン入力
     public void OnClick(int type)
     {
-        //poolから使えるのがあれば使用
+        //poolから使えるのが
+        
         int i = 0;
-        for (; i < poolCount; i++)
+        for (; i < itemPool.Count; i++)
         {
             if (!itemPool[i].activeSelf)
             {
+                //ある
                 ItemCreator(type, itemPool[i]);
                 return;
             }
         }
+        //ない
         OverPool(type);
     }
 
-    //使えるものがないとき
+    //使えるものがない時
     void OverPool(int type)
     {
         //生成してpoolに追加
         itemPool.Add(Instantiate(ItemPrefav, new Vector3(100, 100, 100), Quaternion.identity));
-        poolCount = itemPool.Count;
-        itemPool[poolCount - 1].transform.SetParent(transform);
-        ItemCreator(type, itemPool[poolCount - 1]);
+        itemPool[itemPool.Count - 1].transform.SetParent(transform);
+        ItemCreator(type, itemPool[itemPool.Count - 1]);
     }
 
     //使えるものがある時
@@ -85,8 +87,6 @@ public class ItemManeger : MonoBehaviour
 
         //type設定
         itemObj.GetComponent<ItemType>().type = (Types)type;
-		Debug.Log( itemObj.GetComponent<ItemType>().type );
-        itemObj.GetComponent<ItemType>().StartCol();
     }
 
     //エネミーから呼ばれるとpoolにオブジェクトを返す
